@@ -40,3 +40,4 @@ flask-socketio
 gunicorn
 pytest
 eventlet
+flask_redis
