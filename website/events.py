@@ -1,3 +1,5 @@
+# import eventlet
+# eventlet.monkey_patch(socket=True)
 from .extensions import socketio
 from flask_socketio import send, emit, join_room, leave_room, SocketIO
 from flask import request, session
@@ -7,7 +9,6 @@ import requests
 from flask import Flask
 import redis
 from . import create_app
-import eventlet
 print('socketio:')
 # socketio = socketio()
 # app = create_app()

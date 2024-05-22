@@ -1,8 +1,8 @@
-# celery -A website.celery_config.celery  worker --pool=solo --loglevel=info
+# celery -A website.celery_config.celery  worker --pool=eventlet --loglevel=info
 from celery import shared_task
-from .db_clinicalx import db
-from .extensions import socketio
-from .celery_config import celery
+from ..db_clinicalx import db
+from ..extensions import socketio
+from ..celery_config import celery
 
 
 ITEMS_COLLECTION = db['items']

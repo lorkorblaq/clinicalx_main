@@ -11,8 +11,8 @@ import datetime
 from functools import wraps
 from .mailer import *
 import logging
-from .taskMaster import watch_inventory_changes
-from .chatMaster import chat_watcher
+from .celeryMasters.inventoryMaster import watch_inventory_changes
+from .celeryMasters.chatMaster import chat_watcher
 
 # Configure the logging settings
 logging.basicConfig(filename='app.log', level=logging.INFO)
@@ -30,7 +30,7 @@ def auth_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
         if 'email' in session and 'token' in session:
-            chat_watcher.delay()
+            # chat_watcher.delay()
 
             return f(*args, **kwargs)
         else:

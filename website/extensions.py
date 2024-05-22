@@ -1,12 +1,11 @@
-from flask_socketio import SocketIO
+
 from flask_mail import Mail
-import eventlet
-from .redis_config import redis_client
-eventlet.monkey_patch(socket=True)
+from flask_socketio import SocketIO
+from .redis_config import redis_connection
 
 
 mail = Mail()
 # socketio = SocketIO()
-socketio = SocketIO(message_queue='redis://localhost:6379/0')
+socketio = SocketIO(message_queue=redis_connection)
 print(socketio)
 

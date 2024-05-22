@@ -5,7 +5,7 @@ from .auth import auth_required
 from flask_mail import Message, Mail
 from .extensions import socketio
 from flask_socketio import send, emit
-from  .taskMaster import *
+# from  .celeryMasters.inventoryMaster import *
 from .forms import Newpassword
 
 

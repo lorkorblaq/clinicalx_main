@@ -22,15 +22,15 @@ def create_app():
     app.config['MAIL_USE_TLS'] = False
     app.config['MAIL_USE_SSL'] = True
     app.config['MAIL_DEFAULT_SENDER'] = ('Clinicalx','alertclinicalx@digitalinkx.com')
-    app.config['SESSION_TYPE'] = 'redis'
-    app.config['SESSION_REDIS'] = 'redis://localhost:6379/0'
+    # app.config['SESSION_TYPE'] = 'redis'
+    # app.config['SESSION_REDIS'] = 'redis://localhost:6379/0'
     app.config['SESSION_PERMANENT'] = True
     app.config['SESSION_USE_SIGNER'] = True
     app.config['SESSION_KEY_PREFIX'] = 'labpal'
     app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=2)
-    app.config['CELERY_BROKER_URL'] = 'redis://localhost:6379/0/'
-    app.config['REDIS_URL'] = "redis://localhost:6379/0"
-    app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
+    # app.config['CELERY_BROKER_URL'] = 'redis://localhost:6379/0/'
+    # app.config['REDIS_URL'] = "redis://localhost:6379/0"
+    # app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
 
     # Initialize extensions
     

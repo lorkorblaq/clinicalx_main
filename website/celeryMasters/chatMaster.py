@@ -1,7 +1,7 @@
 from celery import shared_task
-from .db_clinicalx import db
-from .extensions import socketio
-from .celery_config import celery
+from ..db_clinicalx import db
+from ..extensions import socketio
+from ..celery_config import celery
 
 
 piu_COLLECTION = db['piu']
