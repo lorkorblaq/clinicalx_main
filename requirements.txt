@@ -41,3 +41,4 @@ gunicorn
 pytest
 eventlet
 flask_redis
+redis
