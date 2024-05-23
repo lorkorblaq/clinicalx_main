@@ -9,7 +9,7 @@ from flask_socketio import send, emit
 from .forms import Newpassword
 
 
-BASE = "http://0.0.0.0:3000/api"
+BASE = "http://16.171.42.4:3000/api"
 views = Blueprint("views", __name__, static_folder="static", template_folder="templates")
 CORS(views)
 data=""

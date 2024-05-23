@@ -3,8 +3,8 @@ $(function () {
     const columnsPIS = ['created at', 'user', 'item', 'bench', 'machine', 'quantity', 'description', ''];
     const headersPIS = ['_id','created at', 'user', 'item', 'bench', 'machine', 'quantity', 'description', ''];
 
-    BaseUrl = "http://0.0.0.0:3000/api";
-    // BaseUrl = "http://13.53.70.208:3000/api"
+    // BaseUrl = "http://0.0.0.0:3000/api";
+    BaseUrl = "http://16.171.42.4:3000/api"
     
     function getCookie(name) {
         let cookieArr = document.cookie.split("; ");

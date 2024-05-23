@@ -7,8 +7,8 @@ $(function () {
 
     const columnsLot = ['item', 'lot_numb', 'expiration', 'quantity', 'created at'];
     const headersLot = ['Item', 'Lot','Expiration', 'Quantity', 'Created At'];
-    // BaseUrl = "http://13.53.70.208:3000/api"
-    BaseUrl = "http://0.0.0.0:3000/api";
+    BaseUrl = "http://116.171.42.4:3000/api"
+    // BaseUrl = "http://0.0.0.0:3000/api";
 
 
     $('#inventory_b').click(function() {

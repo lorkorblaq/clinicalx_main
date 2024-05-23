@@ -1,4 +1,4 @@
-# celery -A website.celery_config.celery  worker --pool=eventlet --loglevel=info
+# celery -A website.celery_config.celery worker --pool=eventlet --loglevel=info -Q inventory
 from celery import shared_task
 from ..db_clinicalx import db
 from ..extensions import socketio
