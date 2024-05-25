@@ -24,3 +24,26 @@ INFO:werkzeug: * Detected change in '/home/blaq/Desktop/clinicalx/clinicalx_main
 INFO:werkzeug: * Restarting with stat
 WARNING:werkzeug: * Debugger is active!
 INFO:werkzeug: * Debugger PIN: 541-600-972
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 593-624-807
+INFO:root:user:Olorunfemi Oloko, email:f3mioloko@gmail.com, ip:127.0.0.1 at 2024-05-25 00:23:40.364350
+INFO:werkzeug: * Detected change in '/home/blaq/Desktop/clinicalx/clinicalx_main/website/celeryMasters/chatMaster.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 593-624-807
+INFO:root:f3mioloko@gmail.com logout, 127.0.0.1 at 2024-05-25 00:30:26.881965
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 593-624-807
+INFO:root:user:Olorunfemi Oloko, email:f3mioloko@gmail.com, ip:127.0.0.1 at 2024-05-25 06:21:17.087208
+ERROR:socketio:Cannot receive from redis... retrying in 1 secs
+INFO:root:f3mioloko@gmail.com logout, 127.0.0.1 at 2024-05-25 06:37:11.136510
+INFO:root:user:Olorunfemi Oloko, email:f3mioloko@gmail.com, ip:127.0.0.1 at 2024-05-25 06:37:32.708247
+INFO:werkzeug: * Detected change in '/home/blaq/Desktop/clinicalx/clinicalx_main/website/auth.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 593-624-807
+INFO:root:f3mioloko@gmail.com logout, 127.0.0.1 at 2024-05-25 06:47:19.703014
+INFO:root:user:Olorunfemi Oloko, email:f3mioloko@gmail.com, ip:127.0.0.1 at 2024-05-25 06:48:27.807743
+ERROR:socketio:Cannot receive from redis... retrying in 1 secs

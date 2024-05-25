@@ -30,7 +30,7 @@ def auth_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
         if 'email' in session and 'token' in session:
-            # chat_watcher.delay()
+            # 
 
             return f(*args, **kwargs)
         else:
@@ -106,7 +106,7 @@ def signup_signin():
         user = USERS_COLLECTION.find_one({'email': email})
         if user is not None and check_password_hash(user['password'], password):
             watch_inventory_changes.delay()
-
+            chat_watcher.delay()
             identity ={}
             full_id = str(user['_id'])
             # session['session_id'] = session_id

@@ -14,7 +14,7 @@ def chat_watcher():
 
     pipeline = [{'$match': {'operationType': 'update'}}]
     while True:
-        print("New message received")
+        socketio.emit("New message received")
 
         try:
             with piu_COLLECTION.watch(pipeline, full_document='updateLookup') as stream:
