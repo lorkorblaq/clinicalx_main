@@ -21,65 +21,61 @@
         {% endblock head%} 
     </head>
     <body>    
-        <div class="row container-fluid">
+        <div class="row container-fluid d-flex" id="wrapper">
             <!-- Sidebar -->
-            <div class="" id="wrapper">
-                <div class="bg-light border-right push-down1 bg-dark" id="sidebar-wrapper">
-                    <!-- <div class="list-group list-group-flush  tabs  push-down1.2 " > -->
-                        <!-- <a href="http://13.53.70.208:8050/" class="list-group-item list-group-item-action bg-dark">
-                            <i class="fas fa-tachometer-alt"></i>
-                            <span>Dashboard</span>
-                        </a> -->
-                        <div class="all">
-                        <a href="/inventory" id="inventory" class="list-group-item list-group-item-action bg-dark">
-                            <i class="fas fa-warehouse"></i>
-                            <span>Inventory</span>
-                        </a>
-                        <a href="/expiration" id="inventory" class="list-group-item list-group-item-action bg-dark">
-                            <i class="fas fa-calendar-times icon"></i>
-                            <span>Expiration</span>
-                        </a>
-                        <a href="/in-use" class="list-group-item list-group-item-action bg-dark">
-                            <i class="fas fa-play"></i>
-                            <span>In Use</span>
-                        </a>
-                        <a href="/channels" class="list-group-item list-group-item-action bg-dark"  >
-                            <i class="fas fa-exchange-alt"></i>
-                            <span>Channels</span>
-                        </a>
+            <div class="bg-light border-right bg-dark" id="sidebar-wrapper">
+                <!-- <div class="list-group list-group-flush  tabs  push-down1.2 " > -->
+                    <!-- <a href="http://13.53.70.208:8050/" class="list-group-item list-group-item-action bg-dark">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a> -->
+                    <div class="all">
+                    <a href="/inventory" id="inventory" class="list-group-item list-group-item-action bg-dark">
+                        <i class="fas fa-warehouse"></i>
+                        <span>Inventory</span>
+                    </a>
+                    <a href="/expiration" id="inventory" class="list-group-item list-group-item-action bg-dark">
+                        <i class="fas fa-calendar-times icon"></i>
+                        <span>Lots & Exp.</span>
+                    </a>
+                    <a href="/in-use" class="list-group-item list-group-item-action bg-dark">
+                        <i class="fas fa-play"></i>
+                        <span>In Use</span>
+                    </a>
+                    <a href="/channels" class="list-group-item list-group-item-action bg-dark"  >
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>Channels</span>
+                    </a>
 
-                        <!-- <a href="/chat" class="list-group-item list-group-item-action bg-dark">
-                            <i class="fas fa-users icon"></i>
-                            <span>Team</span>
-                        </a> -->
+                    <!-- <a href="/chat" class="list-group-item list-group-item-action bg-dark">
+                        <i class="fas fa-users icon"></i>
+                        <span>Team</span>
+                    </a> -->
 
-                        <a href="/gpt" class="list-group-item list-group-item-action bg-dark">
-                            <i class="fas fa-robot"></i>
-                            <span>Labpal</span>
-                        </a> 
-                        </div>
+                    <a href="/gpt" class="list-group-item list-group-item-action bg-dark">
+                        <i class="fas fa-robot"></i>
+                        <span>Labpal</span>
+                    </a> 
+                    </div>
 
-                        <div class="su">
-                        <a href="/user-profile" class="list-group-item list-group-item-action bg-dark">
-                            <i class="fas fa-user icon"></i>
-                            <span>Profile</span>
-                        </a>
-                        <a href="/settings" class="list-group-item list-group-item-action bg-dark">
-                            <i class="fas fa-cog"></i>
-                            <span>Settings</span>
-                        </a>
-                        <a href="{{url_for('auth.logout')}}"class="list-group-item list-group-item-action bg-dark">
-                            <i class="fas fa-door-open"></i>
-                            <span>Log out</span>
-                        </a>
-                        </div>
-                    <!-- </div> -->
-                </div>
+                    <div class="su">
+                    <a href="/user-profile" class="list-group-item list-group-item-action bg-dark">
+                        <i class="fas fa-user icon"></i>
+                        <span>Profile</span>
+                    </a>
+                    <a href="/settings" class="list-group-item list-group-item-action bg-dark">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                    <a href="{{url_for('auth.logout')}}"class="list-group-item list-group-item-action bg-dark">
+                        <i class="fas fa-door-open"></i>
+                        <span>Log out</span>
+                    </a>
+                    </div>
+                <!-- </div> -->
             </div>
             <!-- Page Content -->
-            <div class="bodyof">
-                <br>
-                <br>
+            <div class="flex-grow-1 p-3 bodyof">
                 <!-- <nav class="search">
                     <form class="form-inline s-search">
                         <div class="location">
@@ -94,9 +90,6 @@
                     {% endblock %}
                 </div>
                 <ul id="alerts"></ul>
-                <footer>
-                   
-                </footer>
             </div>    
         </div>
         <!-- <script src="../static/jquery/jquery.js" type="text/javascript"></script> -->

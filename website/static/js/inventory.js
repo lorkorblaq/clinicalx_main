@@ -1,7 +1,8 @@
 $(function () {
     console.log("inventory.js loaded");
-    const HeadersItem = ['Item','In Stock(vials)', 'Tests/Vial',  'Category', 'Bench'];
-    const ColumnsItem = ['item',  'in stock', 'tests/vial', 'category', 'bench', ];
+    const HeadersItem = ['Items','In Stock(vials)', 'Tests/Vial',  'Category', 'Bench'];
+    const ColumnsItem = ['item',  'in stock', 'tests/vial', 'category', 'bench'];
+
     const ColumnsRequest = ['bench','item', 'in_stock', 'tests_per_day', 'total_tests_in_stock', 'quantity_test_requested', 'total_days_to_last', 'amount_needed'];
     const HeadersRequest = ['Bench','Item', 'In Stock(vials)', 'Tests/Day', 'Total Stock(tests)', 'Quantity Requested(tests)', 'In-Stock To Last(days)', 'Amount needed(vials)'];
 
@@ -102,15 +103,39 @@ $(function () {
             // Add any other DataTable options as needed
         });
         var exportButton = $('<button>').text(' Export').addClass('button fas fa-file-export');
+        var importButton = $('<button>').text(' Import').addClass('button fas fa-file-import');
+        var fileInput = $('<input>').attr('type', 'file').attr('accept', '.csv').css('display', 'none');
         var printButton = $('<button>').text(' Print').addClass('button fas fa-print');
         exportButton.click(function() {
             exportJSONData(data);
         });
+        importButton.click(function() {
+            fileInput.click();
+        });
+
+        fileInput.on('change', function(event) {
+            var file = event.target.files[0];
+            if (file) {
+                readCSVFile(file);
+            }
+        });
+
+        function readCSVFile(file) {
+            var reader = new FileReader();
+            reader.onload = function(event) {
+                var csvData = event.target.result;
+                var jsonData = convertCSVToJSON(csvData);
+                sendJSONDataToAPI(jsonData);
+            };
+            reader.readAsText(file);
+        }
+
         printButton.click(function() {
             printJSONDataAsCSV(data);
         });
+
         if ($(`#${exTableId}`).find('.button').length === 0) {
-            $(`#${exTableId}`).append(exportButton).append(printButton);
+            $(`#${exTableId}`).append(exportButton).append(importButton).append(printButton);
         }
         }
 
@@ -150,11 +175,29 @@ $(function () {
             // Join row array with comma and push to CSV array
             csv.push(row.join(','));
         });
-        
+    
         // Combine rows into a single CSV string
         var csvContent = csv.join('\n');
         return csvContent;
     }
+
+    function convertCSVToJSON(csvData) {
+        var lines = csvData.split('\n');
+        var result = [];
+        var headers = lines[0].split(',');
+    
+        for (var i = 1; i < lines.length; i++) {
+            var obj = {};
+            var currentLine = lines[i].split(',');
+    
+            for (var j = 0; j < headers.length; j++) {
+                obj[headers[j].trim()] = currentLine[j].trim();
+            }
+            result.push(obj);
+        }
+        return result;
+    }
+    
     // Function to print the table content
     function printJSONDataAsCSV(jsonData) {
         // Add header row

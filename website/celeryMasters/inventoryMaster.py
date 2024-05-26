@@ -4,7 +4,6 @@ from ..db_clinicalx import db
 from ..extensions import socketio
 from ..celery_config import celery
 
-
 ITEMS_COLLECTION = db['items']
 
 @celery.task()

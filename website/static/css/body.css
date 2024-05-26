@@ -13,8 +13,8 @@ body {
     background-attachment: fixed; /
 }
 .bodyof {
-    width: 80%;
-    margin-left: 100px
+    width: 10%;
+    margin-left: 50px
 }
 
 
@@ -79,3 +79,5 @@ body {
     margin-right: 10px; /* Optional: Adjust the spacing between the icon and the notification message */
     background-color: antiquewhite;
 }
+
+
