@@ -15,13 +15,13 @@ def create_app():
     app = Flask(__name__)
     # Configuration settings
     app.config['SECRET_KEY'] = 'LVUC5jSkp7jjR3O-'
-    app.config['MAIL_SERVER'] = 'mail.digitalinkx.com'
+    app.config['MAIL_SERVER'] = 'mail.labpal.com.ng'
     app.config['MAIL_PORT'] = 465
-    app.config['MAIL_USERNAME'] = 'alertclinicalx@digitalinkx.com'
+    app.config['MAIL_USERNAME'] = 'labpal@labpal.com.ng'
     app.config['MAIL_PASSWORD'] = '518Oloko.'
     app.config['MAIL_USE_TLS'] = False
     app.config['MAIL_USE_SSL'] = True
-    app.config['MAIL_DEFAULT_SENDER'] = ('Clinicalx','alertclinicalx@digitalinkx.com')
+    app.config['MAIL_DEFAULT_SENDER'] = ('Clinicalx','labpal@labpal.com.ng')
     # app.config['SESSION_TYPE'] = 'redis'
     # app.config['SESSION_REDIS'] = 'redis://localhost:6379/0'
     app.config['SESSION_PERMANENT'] = True
