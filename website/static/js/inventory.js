@@ -8,8 +8,8 @@ $(function () {
 
     const columnsLot = ['item', 'lot_numb', 'expiration', 'quantity', 'created at'];
     const headersLot = ['Item', 'Lot','Expiration', 'Quantity', 'Created At'];
-    BaseUrl = "http://16.171.42.4:3000/api"
-    // BaseUrl = "http://0.0.0.0:3000/api";
+    // BaseUrl = "http://16.171.42.4:3000/api"
+    BaseUrl = "http://0.0.0.0:3000/api";
 
 
     $('#inventory_b').click(function() {
@@ -88,56 +88,105 @@ $(function () {
     function renderTable(tableId, exTableId, data, columns, headers) {
         // Destroy the existing DataTable instance for the specified table ID (if it exists)
         if ($.fn.DataTable.isDataTable(`#${tableId}`)) {
-            $(`#${tableId}`).DataTable().clear().destroy();
+            $(`#${tableId}`).DataTable().clear();
             $(`#${tableId}_head`).empty(); // Remove all children elements
         }
+    
         // Function to append headers to the table
         headers.forEach(function (header) {
-            h = $(`#${tableId}_head`);
             $(`#${tableId}_head`).append(`<th>${header}</th>`);
         });
+
         // Initialize a new DataTable instance for the specified table ID
         $(`#${tableId}`).DataTable({
             data: data,
             columns: columns.map(col => ({ data: col })),
             // Add any other DataTable options as needed
         });
+    
+        // Create buttons
         var exportButton = $('<button>').text(' Export').addClass('button fas fa-file-export');
-        var importButton = $('<button>').text(' Import').addClass('button fas fa-file-import');
-        var fileInput = $('<input>').attr('type', 'file').attr('accept', '.csv').css('display', 'none');
         var printButton = $('<button>').text(' Print').addClass('button fas fa-print');
+        var deleteDB = $('<button>').text(' Delete').addClass('button fas fa-trash-alt');
+    
+        // Define button actions
         exportButton.click(function() {
             exportJSONData(data);
         });
-        importButton.click(function() {
-            fileInput.click();
+        
+        printButton.click(function() {
+            printJSONDataAsCSV(data);
         });
-
+    
+        deleteDB.click(function() {
+            fetch(`${BaseUrl}/items/deleteall/`, {
+                method: 'DELETE'
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                alert('Items deleted successfully!');
+                renderTable(tableId, exTableId, [], columns, headers); // Re-render table with empty data
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('Error deleting items');
+            });
+        });
+    
+        // Append buttons to exTableId if not already appended
+        var buttonContainer = $(`#${exTableId}`);
+        if (buttonContainer.find('.button').length === 0) {
+            buttonContainer.append(exportButton).append(printButton).append(deleteDB);
+        }
+    }
+    $('#importButton').click(function () {
+        alert('Please select a CSV file to import data');
+        
+        // Create hidden file input
+        var fileInput = $('<input>').attr('type', 'file').attr('accept', '.csv').css('display', 'none');
+        $('body').append(fileInput); // Append to body
+        
+        // Bind change event before triggering click
         fileInput.on('change', function(event) {
             var file = event.target.files[0];
             if (file) {
                 readCSVFile(file);
             }
         });
+        
+        // Trigger file input click
+        fileInput.click();
+    });
 
-        function readCSVFile(file) {
-            var reader = new FileReader();
-            reader.onload = function(event) {
-                var csvData = event.target.result;
-                var jsonData = convertCSVToJSON(csvData);
-                sendJSONDataToAPI(jsonData);
-            };
-            reader.readAsText(file);
-        }
-
-        printButton.click(function() {
-            printJSONDataAsCSV(data);
+    
+    function readCSVFile(file) {
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            var csvData = event.target.result;
+            var jsonData = convertCSVToJSON(csvData);
+            sendJSONDataToAPI(jsonData);
+        };
+        reader.readAsText(file);
+    }
+    function sendJSONDataToAPI(jsonData) {
+        fetch(`${BaseUrl}/items/bulkpush/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(jsonData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            alert('Data imported successfully!');
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert('Error importing data');
         });
-
-        if ($(`#${exTableId}`).find('.button').length === 0) {
-            $(`#${exTableId}`).append(exportButton).append(importButton).append(printButton);
-        }
-        }
+    };
 
     function exportJSONData(data) {
         // Convert JSON data to CSV format
@@ -182,16 +231,16 @@ $(function () {
     }
 
     function convertCSVToJSON(csvData) {
-        var lines = csvData.split('\n');
+        var lines = csvData.split('\n').filter(line => line.trim() !== ''); // Filter out empty lines
         var result = [];
-        var headers = lines[0].split(',');
+        var headers = lines[0].split(',').map(header => header.trim()); // Trim headers
     
         for (var i = 1; i < lines.length; i++) {
             var obj = {};
-            var currentLine = lines[i].split(',');
+            var currentLine = lines[i].split(',').map(cell => cell.trim()); // Trim cell values
     
             for (var j = 0; j < headers.length; j++) {
-                obj[headers[j].trim()] = currentLine[j].trim();
+                obj[headers[j]] = currentLine[j];
             }
             result.push(obj);
         }
