@@ -3,7 +3,7 @@ from wtforms import StringField, PasswordField, SubmitField, DateField, BooleanF
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 
 class RegistrationForm(FlaskForm):
-    org_id = StringField('org id', validators=[DataRequired(), Length(min=1, max=20)], render_kw={"placeholder":"Organisation Token"})
+    org = StringField('org', validators=[DataRequired(), Length(min=4, max=20)], render_kw={"placeholder":"Organisation"})
     firstname = StringField('Firstname', validators=[DataRequired(), Length(min=3, max=20)], render_kw={"placeholder":"First name"})
     lastname = StringField('Lastname', validators=[DataRequired(), Length(min=3, max=20)],  render_kw={"placeholder":"Last name"})
     email = StringField('Email',validators=[DataRequired(), Email()], render_kw={"placeholder":"Email address"})

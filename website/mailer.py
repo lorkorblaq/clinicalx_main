@@ -1,21 +1,20 @@
-from flask_mail import Message, Mail
-# from website import mail
-# from website import mailer
-# from . import db_clinical
-# mail = create_app().mail
+from flask_mail import Message
+from flask import current_app
 
-def mailer(mail, emailh, subjecth, htmlh):
-    message = Message(
-        subject=subjecth,
-        recipients=[emailh],
-    )
-    message.html = htmlh
-    return mail.send(message)
+def mailer(emailh, subjecth, htmlh):
+    with current_app.app_context():
+        mail = current_app.extensions['mail']
+        message = Message(
+            subject=subjecth,
+            recipients=[emailh],
+        )
+        message.html = htmlh
+        return mail.send(message)
 
 def welcomeMail(email, name):
-    subject="Clinicalx Welcome Email"    
-    html = f'<h1>Welcome {name}, to Clinicalx.</h1>'
-    mailer(email,subject, html)
+    subject="Hy from LabPal"    
+    html = f'<h1>Welcome {name}, to Labpal.</h1>'
+    mailer(email, subject, html)
     # return "Email sent"
 
 

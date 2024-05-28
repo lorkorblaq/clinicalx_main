@@ -9,7 +9,7 @@ import os
 import jwt
 import datetime
 from functools import wraps
-from .mailer import *
+from .mailer import welcomeMail
 import logging
 from .celeryMasters.inventoryMaster import watch_inventory_changes
 from .celeryMasters.chatMaster import chat_watcher
@@ -25,6 +25,7 @@ API_BASE_URL = "http:16.171.42.4:3000/api/user/push/"
 auth = Blueprint("auth", __name__, static_folder="static", template_folder="templates")
 
 USERS_COLLECTION = db['users']   
+ORG_COLLECTION = db['organisations']
 
 def auth_required(f):
     @wraps(f)
@@ -64,7 +65,7 @@ def signup_signin():
     register_form = RegistrationForm()
     if 'signup' in request.form:
         # Form submission for sign up
-        org_id = register_form.org_id.data
+        org = register_form.org.data
         firstname = register_form.firstname.data
         lastname = register_form.lastname.data
         email = register_form.email.data
@@ -74,10 +75,14 @@ def signup_signin():
         # if org_id is not 0:
         #     flash("Organisation not registered")
         #     return render_template("auth.html", login_form=login_form, register_form=register_form) 
+        if not ORG_COLLECTION.find_one({'name': org}): 
+            flash("Organisation not registered. Please register your organisation.", "warning") 
+            return redirect(url_for('auth.auth_page'))  # Redirect to organization registration page           
         
-        if USERS_COLLECTION.find_one({'email': email}):
+        elif USERS_COLLECTION.find_one({'email': email}):
             flash("Email already exists")
             return redirect(url_for('auth.auth_page'))
+        
         elif password == confirm_password:
             hashed_password = generate_password_hash(password)
             form_data = {
@@ -89,11 +94,12 @@ def signup_signin():
             }
             name=firstname + " " + lastname
             # print(form_data)
-            if USERS_COLLECTION.insert_one(form_data):
+            try: 
+                USERS_COLLECTION.insert_one(form_data)
                 flash("Successful,\n now login", "success")
                 welcomeMail(email, name)
                 return redirect(url_for('auth.auth_page'))
-            else:
+            except:
                 flash("Failed to register user. Please try again.", "danger")
                 return redirect(url_for('auth.auth_page'))
         else:

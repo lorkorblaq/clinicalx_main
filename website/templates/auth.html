@@ -13,7 +13,7 @@
       <form class="signUp" action="{{ url_for('auth.signup_signin') }}" method="post">
         <h3>Create Account</h3>
           {{ register_form.hidden_tag() }}
-          {{ register_form.org_id }}
+          {{ register_form.org }}
           {{ register_form.firstname }}
           {{ register_form.lastname }}
           {{ register_form.email }}
