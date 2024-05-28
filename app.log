@@ -227,3 +227,88 @@ INFO:werkzeug: * Detected change in '/home/blaq/Desktop/clinicalx/clinicalx_main
 INFO:werkzeug: * Restarting with stat
 WARNING:werkzeug: * Debugger is active!
 INFO:werkzeug: * Debugger PIN: 679-316-323
+INFO:werkzeug: * Detected change in '/home/blaq/Desktop/clinicalx/clinicalx_main/website/forms.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 679-316-323
+INFO:werkzeug: * Detected change in '/home/blaq/Desktop/clinicalx/clinicalx_main/website/forms.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 679-316-323
+INFO:werkzeug: * Detected change in '/home/blaq/Desktop/clinicalx/clinicalx_main/website/forms.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 679-316-323
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 679-316-323
+INFO:root:tund3oloko@gmail.com logout, 127.0.0.1 at 2024-05-28 06:58:52.816525
+INFO:werkzeug: * Detected change in '/home/blaq/Desktop/clinicalx/clinicalx_main/website/forms.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 679-316-323
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 679-316-323
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 679-316-323
+INFO:werkzeug: * Detected change in '/home/blaq/Desktop/clinicalx/clinicalx_main/website/auth.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 679-316-323
+INFO:werkzeug: * Detected change in '/home/blaq/Desktop/clinicalx/clinicalx_main/website/forms.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 679-316-323
+INFO:werkzeug: * Detected change in '/home/blaq/Desktop/clinicalx/clinicalx_main/website/forms.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 679-316-323
+INFO:werkzeug: * Detected change in '/home/blaq/Desktop/clinicalx/clinicalx_main/website/forms.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 679-316-323
+INFO:werkzeug: * Detected change in '/home/blaq/Desktop/clinicalx/clinicalx_main/website/auth.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 679-316-323
+INFO:root:user:Olorunfemi Oloko, email:f3mioloko@gmail.com, ip:127.0.0.1 at 2024-05-28 08:38:38.537864
+INFO:werkzeug: * Detected change in '/home/blaq/Desktop/clinicalx/clinicalx_main/website/auth.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 679-316-323
+ERROR:engineio.server:Invalid session V8YLulMvGwx43oL9AAAA (further occurrences of this error will be logged with level INFO)
+INFO:werkzeug: * Detected change in '/home/blaq/Desktop/clinicalx/clinicalx_main/website/forms.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 679-316-323
+ERROR:engineio.server:Invalid session u7BEwvFt_G4clFuYAAAA (further occurrences of this error will be logged with level INFO)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 679-316-323
+INFO:root:f3mioloko@gmail.com logout, 127.0.0.1 at 2024-05-28 08:42:31.599414
+INFO:werkzeug: * Detected change in '/home/blaq/Desktop/clinicalx/clinicalx_main/website/auth.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 679-316-323
+INFO:werkzeug: * Detected change in '/home/blaq/Desktop/clinicalx/clinicalx_main/website/forms.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 679-316-323
+INFO:werkzeug: * Detected change in '/home/blaq/Desktop/clinicalx/clinicalx_main/website/auth.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 679-316-323
+INFO:root:user:Olorunfemi Oloko, email:f3mioloko@gmail.com, ip:127.0.0.1 at 2024-05-28 08:47:25.224127
+INFO:werkzeug: * Detected change in '/home/blaq/Desktop/clinicalx/clinicalx_main/website/auth.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 679-316-323
+INFO:werkzeug: * Detected change in '/home/blaq/Desktop/clinicalx/clinicalx_main/website/auth.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 679-316-323
+ERROR:engineio.server:Invalid session 11_YHAqZB5IXoHPtAAAA (further occurrences of this error will be logged with level INFO)

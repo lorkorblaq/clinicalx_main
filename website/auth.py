@@ -65,10 +65,10 @@ def signup_signin():
     register_form = RegistrationForm()
     if 'signup' in request.form:
         # Form submission for sign up
-        org = register_form.org.data
+        org = register_form.org.data.lower()
         firstname = register_form.firstname.data
         lastname = register_form.lastname.data
-        email = register_form.email.data
+        email = register_form.email.data.lower()
         password = register_form.password.data
         confirm_password = register_form.confirm_password.data
         hashed_password = generate_password_hash(password)
@@ -106,7 +106,8 @@ def signup_signin():
             flash("Passwords do not match.", "danger")
             return redirect(url_for('auth.auth_page'))
     elif 'signin' in request.form:
-        email = login_form.email.data
+        email = login_form.email.data.lower()
+        print(email)
         password = login_form.password.data
         # Fetch user from MongoDB based on the provided email
         user = USERS_COLLECTION.find_one({'email': email})
