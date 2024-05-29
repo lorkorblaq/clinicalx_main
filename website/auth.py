@@ -65,7 +65,7 @@ def signup_signin():
     register_form = RegistrationForm()
     if 'signup' in request.form:
         # Form submission for sign up
-        org = register_form.org.data.lower()
+        org = register_form.org.data.replace(" ", "").lower()
         firstname = register_form.firstname.data
         lastname = register_form.lastname.data
         email = register_form.email.data.lower()
@@ -96,7 +96,7 @@ def signup_signin():
             # print(form_data)
             try: 
                 USERS_COLLECTION.insert_one(form_data)
-                flash("Successful,\n now login", "success")
+                flash("Registration successful, you can now login", "success")
                 welcomeMail(email, name)
                 return redirect(url_for('auth.auth_page'))
             except:
@@ -113,7 +113,7 @@ def signup_signin():
         user = USERS_COLLECTION.find_one({'email': email})
         if user is not None and check_password_hash(user['password'], password):
             watch_inventory_changes.delay()
-            chat_watcher.delay()
+            # chat_watcher.delay()
             identity ={}
             full_id = str(user['_id'])
             # session['session_id'] = session_id

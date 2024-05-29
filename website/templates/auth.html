@@ -10,8 +10,9 @@
   <body>
     <h1 style="text-align: center;">LABPAL</h1>
     <div class="container">
+      <button> Register Org.</button>
       <form class="signUp" action="{{ url_for('auth.signup_signin') }}" method="post">
-        <h3>Create Account</h3>
+        <h5>Create Account</h5>
           {{ register_form.hidden_tag() }}
           {{ register_form.org }}
           {{ register_form.firstname }}
@@ -24,7 +25,7 @@
       </form>
       
       <form class="signIn" action="{{ url_for('auth.signup_signin') }}" method="post">
-        <h3>Welcome</br>Back!</h3>
+        <h5>Welcome</br>Back!</h5>
           {{ login_form.hidden_tag() }}
           {{ login_form.email }}
           {{ login_form.password }}

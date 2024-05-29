@@ -44,13 +44,21 @@ p > span {
   font-size: 9px;
 }
 
-h3 {
+/* h3 {
   font-family: 'Dosis';
   font-size: 35px;
   text-transform: uppercase;
   color: #87613d;
   margin-bottom: 30px;
+} */
+h5 {
+  font-family: 'Dosis';
+  font-size: 25px;
+  text-transform: uppercase;
+  color: #87613d;
+  margin-bottom: 30px;
 }
+
 h1 {
   font-family: 'Dosis';
   color: #87613d;
