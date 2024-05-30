@@ -119,7 +119,6 @@ $(function () {
             dataTableInstance.clear();
             dataTableInstance.rows.add(data.channels);
             dataTableInstance.draw();
-            console.log('dd')
         }).catch(error => {
             console.error("Error fetching data:", error);
         });

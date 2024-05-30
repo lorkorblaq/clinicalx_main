@@ -356,3 +356,25 @@ INFO:werkzeug: * Restarting with stat
 WARNING:werkzeug: * Debugger is active!
 INFO:werkzeug: * Debugger PIN: 956-087-621
 INFO:root:user:Olorunfemi Oloko, email:f3mioloko@gmail.com, ip:127.0.0.1 at 2024-05-29 09:38:06.569863
+INFO:werkzeug: * Detected change in '/home/blaq/Desktop/clinicalx/clinicalx_main/website/celery_config.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 956-087-621
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 956-087-621
+INFO:werkzeug: * Detected change in '/home/blaq/Desktop/clinicalx/clinicalx_main/website/auth.py', reloading
+INFO:werkzeug: * Detected change in '/home/blaq/Desktop/clinicalx/clinicalx_main/website/auth.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 956-087-621
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 956-087-621
+INFO:root:user:Olorunfemi Oloko, email:f3mioloko@gmail.com, ip:127.0.0.1 at 2024-05-29 19:44:32.769201
+ERROR:engineio.server:Invalid session vvLgkrKOp2Wwb88BAAAA (further occurrences of this error will be logged with level INFO)
+ERROR:engineio.server:Invalid session KT2dFfcAGYb5n4s2AAAC (further occurrences of this error will be logged with level INFO)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 118-656-434
+INFO:root:user:Olorunfemi Oloko, email:f3mioloko@gmail.com, ip:127.0.0.1 at 2024-05-30 05:31:44.564141

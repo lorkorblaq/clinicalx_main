@@ -60,16 +60,7 @@ $(function () {
                 console.log("Requisition submitted successfully:", response);
                 // You can display a success message or perform any other action here
                 $("#ex-request_invent_table").show();
-                renderTable('request_invent_table', 'ex-request_invent_table', response.requested, ColumnsRequest, HeadersRequest);
-                // var exportButton = $('<button>').text(' Export').addClass('button fas fa-file-export');
-                // var printButton = $('<button>').text(' Print').addClass('button fas fa-print');
-                // exportButton.click(function() {
-                //     exportJSONData(response.requested);
-                // });
-                // printButton.click(function() {
-                //     printJSONDataAsCSV(response.requested);
-                // });
-                // $('#table_request').append(exportButton).append(printButton);
+                renderTable('request_invent_table', 'ex-request_invent_table', response.requested, ColumnsRequest, HeadersRequest);``
             },
             error: function(xhr, status, error) {
                 // Handle errors from the API
@@ -86,209 +77,296 @@ $(function () {
     }
     // Function to render a DataTable instance for the specified table ID
     function renderTable(tableId, exTableId, data, columns, headers) {
-        // Destroy the existing DataTable instance for the specified table ID (if it exists)
-        if ($.fn.DataTable.isDataTable(`#${tableId}`)) {
-            $(`#${tableId}`).DataTable().clear();
-            $(`#${tableId}_head`).empty(); // Remove all children elements
-        }
-    
-        // Function to append headers to the table
-        headers.forEach(function (header) {
-            $(`#${tableId}_head`).append(`<th>${header}</th>`);
-        });
-
-        // Initialize a new DataTable instance for the specified table ID
-        $(`#${tableId}`).DataTable({
-            data: data,
-            columns: columns.map(col => ({ data: col })),
-            // Add any other DataTable options as needed
-        });
-    
-        // Create buttons
-        var exportButton = $('<button>').text(' Export').addClass('button fas fa-file-export');
-        var printButton = $('<button>').text(' Print').addClass('button fas fa-print');
-        var deleteDB = $('<button>').text(' Delete').addClass('button fas fa-trash-alt');
-    
-        // Define button actions
-        exportButton.click(function() {
-            exportJSONData(data);
-        });
-        
-        printButton.click(function() {
-            printJSONDataAsCSV(data);
-        });
-    
-        deleteDB.click(function() {
-            fetch(`${BaseUrl}/items/deleteall/`, {
-                method: 'DELETE'
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-                alert('Items deleted successfully!');
-                renderTable(tableId, exTableId, [], columns, headers); // Re-render table with empty data
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                alert('Error deleting items');
-            });
-        });
-    
-        // Append buttons to exTableId if not already appended
-        var buttonContainer = $(`#${exTableId}`);
-        if (buttonContainer.find('.button').length === 0) {
-            buttonContainer.append(exportButton).append(printButton).append(deleteDB);
-        }
+    // Check if DataTable is already initialized and destroy it if it is
+    if ($.fn.DataTable.isDataTable(`#${tableId}`)) {
+        var table = $(`#${tableId}`).DataTable();
+        table.clear().destroy();
     }
-    $('#importButton').click(function () {
-        alert('Please select a CSV file to import data');
-        
-        // Create hidden file input
-        var fileInput = $('<input>').attr('type', 'file').attr('accept', '.csv').css('display', 'none');
-        $('body').append(fileInput); // Append to body
-        
-        // Bind change event before triggering click
-        fileInput.on('change', function(event) {
-            var file = event.target.files[0];
-            if (file) {
-                readCSVFile(file);
-            }
-        });
-        
-        // Trigger file input click
-        fileInput.click();
+
+    // Clear the table headers
+    $(`#${tableId}_head`).empty();
+
+    // Append new headers to the table
+    headers.forEach(function(header) {
+        $(`#${tableId}_head`).append(`<th>${header}</th>`);
     });
 
-    
-    function readCSVFile(file) {
-        var reader = new FileReader();
-        reader.onload = function(event) {
-            var csvData = event.target.result;
-            var jsonData = convertCSVToJSON(csvData);
-            sendJSONDataToAPI(jsonData);
-        };
-        reader.readAsText(file);
-    }
-    function sendJSONDataToAPI(jsonData) {
-        fetch(`${BaseUrl}/items/bulkpush/`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(jsonData)
+    // Initialize a new DataTable instance for the specified table ID
+    $(`#${tableId}`).DataTable({
+        data: data,
+        columns: columns.map(col => ({ data: col })),
+        // Add any other DataTable options as needed
+    });
+
+    // Create buttons
+    var exportButton = $('<button>').text(' Export').addClass('button fas fa-file-export');
+    var printButton = $('<button>').text(' Print').addClass('button fas fa-print');
+    var deleteDB = $('<button>').text(' Delete').addClass('button fas fa-trash-alt');
+
+    // Define button actions
+    exportButton.click(function() {
+        exportJSONData(data);
+    });
+
+    printButton.click(function() {
+        printJSONDataAsCSV(data);
+    });
+
+    deleteDB.click(function() {
+        fetch(`${BaseUrl}/items/deleteall/`, {
+            method: 'DELETE'
         })
         .then(response => response.json())
         .then(data => {
             console.log('Success:', data);
-            alert('Data imported successfully!');
+            alert('Items deleted successfully!');
+            renderTable(tableId, exTableId, [], columns, headers); // Re-render table with empty data
         })
         .catch((error) => {
             console.error('Error:', error);
-            alert('Error importing data');
+            alert('Error deleting items');
         });
+    });
+
+    // Append buttons to exTableId if not already appended
+    var buttonContainer = $(`#${exTableId}`);
+    if (buttonContainer.find('.button').length === 0) {
+        buttonContainer.append(exportButton).append(printButton).append(deleteDB);
+    }
+}
+
+$('#importButton').click(function() {
+    alert('Please select a CSV file to import data');
+    
+    // Create hidden file input
+    var fileInput = $('<input>').attr('type', 'file').attr('accept', '.csv').css('display', 'none');
+    $('body').append(fileInput); // Append to body
+    
+    // Bind change event before triggering click
+    fileInput.on('change', function(event) {
+        var file = event.target.files[0];
+        if (file) {
+            readCSVFile(file);
+        }
+    });
+    
+    // Trigger file input click
+    fileInput.click();
+});
+
+function readCSVFile(file) {
+    var reader = new FileReader();
+    reader.onload = function(event) {
+        var csvData = event.target.result;
+        var jsonData = convertCSVToJSON(csvData);
+        sendJSONDataToAPI(jsonData);
     };
+    reader.readAsText(file);
+}
 
-    function exportJSONData(data) {
-        // Convert JSON data to CSV format
-        var csvContent = convertJSONToCSV(data);
-        
-        // Create a blob object from the CSV content
-        var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-        
-        // Create a temporary anchor element to trigger the download
-        var link = document.createElement('a');
-        var url = URL.createObjectURL(blob);
-        link.setAttribute('href', url);
-        link.setAttribute('download', 'data.csv');
-        document.body.appendChild(link);
-        
-        // Trigger the download
-        link.click();
-        document.body.removeChild(link);
-    }
-    // Function to convert JSON data to CSV format
-    function convertJSONToCSV(data) {
-        var csv = [];
-        // Extract column headers from the first object in the array
-        var headers = Object.keys(data[0]);
-        csv.push(headers.join(','));
-        
-        // Iterate over each object in the array
-        data.forEach(function(obj) {
-            var row = [];
-            // Iterate over each property in the object
-            headers.forEach(function(header) {
-                // Add the property value to the row array
-                row.push(obj[header]);
-            });
-            // Join row array with comma and push to CSV array
-            csv.push(row.join(','));
-        });
-    
-        // Combine rows into a single CSV string
-        var csvContent = csv.join('\n');
-        return csvContent;
-    }
+function sendJSONDataToAPI(jsonData) {
+    fetch(`${BaseUrl}/items/bulkpush/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(jsonData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+        alert('Data imported successfully!');
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        alert('Error importing data');
+    });
+}
 
-    function convertCSVToJSON(csvData) {
-        var lines = csvData.split('\n').filter(line => line.trim() !== ''); // Filter out empty lines
-        var result = [];
-        var headers = lines[0].split(',').map(header => header.trim()); // Trim headers
-    
-        for (var i = 1; i < lines.length; i++) {
-            var obj = {};
-            var currentLine = lines[i].split(',').map(cell => cell.trim()); // Trim cell values
-    
-            for (var j = 0; j < headers.length; j++) {
-                obj[headers[j]] = currentLine[j];
-            }
-            result.push(obj);
-        }
-        return result;
-    }
-    
-    // Function to print the table content
-    function printJSONDataAsCSV(jsonData) {
-        // Add header row
-        var headerRow = [];
-        for (var key in jsonData[0]) {
-            if (jsonData[0].hasOwnProperty(key)) {
-                headerRow.push(key);
-            }
-        }
-        var csvContent = '<table border="2">';
-        // Add header row to CSV content
-        csvContent += '<thead><tr>';
-        headerRow.forEach(function(header) {
-            csvContent += `<th>${header}</th>`;
+
+function exportJSONData(data) {
+    // Convert JSON data to CSV format
+    var csvContent = convertJSONToCSV(data);
+
+    // Create a blob object from the CSV content
+    var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+
+    // Create a temporary anchor element to trigger the download
+    var link = document.createElement('a');
+    var url = URL.createObjectURL(blob);
+    link.setAttribute('href', url);
+    link.setAttribute('download', 'data.csv');
+    document.body.appendChild(link);
+
+    // Trigger the download
+    link.click();
+    document.body.removeChild(link);
+}
+
+// Function to convert JSON data to CSV format
+function convertJSONToCSV(data) {
+    var csv = [];
+    // Extract column headers from the first object in the array
+    var headers = Object.keys(data[0]);
+    csv.push(headers.join(','));
+
+    // Iterate over each object in the array
+    data.forEach(function(obj) {
+        var row = [];
+        // Iterate over each property in the object
+        headers.forEach(function(header) {
+            // Add the property value to the row array
+            row.push(obj[header]);
         });
-        csvContent += '</tr></thead>';
-        
-        // Convert JSON data to CSV format
-        jsonData.forEach(function(item) {
-            var row = [];
-            for (var key in item) {
-                if (item.hasOwnProperty(key)) {
-                    row.push(item[key]);
-                }
-            }
-            csvContent += '<tr>'; // Add row start tag
-            row.forEach(function(cell) {
-                csvContent += `<td>${cell}</td>`;
-            });
-            csvContent += '</tr>'; // Add row end tag
-            csvContent += '<tr><td colspan="' + headerRow.length + '"><hr></td></tr>'; // Add horizontal line
-        });
-        csvContent += '</table>';
+        // Join row array with comma and push to CSV array
+        csv.push(row.join(','));
+    });
+
+    // Combine rows into a single CSV string
+    var csvContent = csv.join('\n');
+    return csvContent;
+}
+
+function convertCSVToJSON(csvData) {
+    var lines = csvData.split('\n').filter(line => line.trim() !== ''); // Filter out empty lines
+    var result = [];
+    var headers = lines[0].split(',').map(header => header.trim()); // Trim headers
     
-        // Open a new window to display the CSV content
-        var printWindow = window.open('', '_blank');
-        printWindow.document.write('<html><head><title>Table Print</title></head><body>');
-        printWindow.document.write(csvContent);
-        printWindow.document.write('</body></html>');
-        printWindow.document.close();
-        printWindow.print();
+    // Set of fields that should be converted to numbers
+    var numericFields = new Set(['in stock', 'tests/vial', 'vials/pack', 'reOrderLevel', 'tests/day']);
+
+    for (var i = 1; i < lines.length; i++) {
+        var obj = {};
+        var currentLine = lines[i].split(',').map(cell => cell.trim()); // Trim cell values
+
+        for (var j = 0; j < headers.length; j++) {
+            var header = headers[j];
+            var value = currentLine[j];
+            // Convert numeric fields to numbers
+            if (numericFields.has(header)) {
+                obj[header] = Number(value);
+            } else {
+                obj[header] = value;
+            }
+        }
+        result.push(obj);
     }
+    return result;
+}
+
+// Function to print the table content
+function printJSONDataAsCSV(jsonData) {
+    // Add header row
+    var headerRow = [];
+    for (var key in jsonData[0]) {
+        if (jsonData[0].hasOwnProperty(key)) {
+            headerRow.push(key);
+        }
+    }
+    var csvContent = '<table border="2">';
+    // Add header row to CSV content
+    csvContent += '<thead><tr>';
+    headerRow.forEach(function(header) {
+        csvContent += `<th>${header}</th>`;
+    });
+    csvContent += '</tr></thead>';
+
+    // Convert JSON data to CSV format
+    jsonData.forEach(function(item) {
+        var row = [];
+        for (var key in item) {
+            if (item.hasOwnProperty(key)) {
+                row.push(item[key]);
+            }
+        }
+        csvContent += '<tr>'; // Add row start tag
+        row.forEach(function(cell) {
+            csvContent += `<td>${cell}</td>`;
+        });
+        csvContent += '</tr>'; // Add row end tag
+        csvContent += '<tr><td colspan="' + headerRow.length + '"><hr></td></tr>'; // Add horizontal line
+    });
+    csvContent += '</table>';
+
+    // Open a new window to display the CSV content
+    var printWindow = window.open('', '_blank');
+    printWindow.document.write('<html><head><title>Table Print</title></head><body>');
+    printWindow.document.write(csvContent);
+    printWindow.document.write('</body></html>');
+    printWindow.document.close();
+    printWindow.print();
+}
+
+function convertCSVToJSON(csvData) {
+    var lines = csvData.split('\n').filter(line => line.trim() !== ''); // Filter out empty lines
+    var result = [];
+    var headers = lines[0].split(',').map(header => header.trim()); // Trim headers
+    
+    // Set of fields that should be converted to numbers
+    var numericFields = new Set(['in stock', 'tests/vial', 'vials/pack', 'reOrderLevel', 'tests/day']);
+
+    for (var i = 1; i < lines.length; i++) {
+        var obj = {};
+        var currentLine = lines[i].split(',').map(cell => cell.trim()); // Trim cell values
+
+        for (var j = 0; j < headers.length; j++) {
+            var header = headers[j];
+            var value = currentLine[j];
+            // Convert numeric fields to numbers
+            if (numericFields.has(header)) {
+                obj[header] = Number(value);
+            } else {
+                obj[header] = value;
+            }
+        }
+        result.push(obj);
+    }
+    return result;
+}
+
+// Function to print the table content
+// function printJSONDataAsCSV(jsonData) {
+//     // Add header row
+//     var headerRow = [];
+//     for (var key in jsonData[0]) {
+//         if (jsonData[0].hasOwnProperty(key)) {
+//             headerRow.push(key);
+//         }
+//     }
+//     var csvContent = '<table border="2">';
+//     // Add header row to CSV content
+//     csvContent += '<thead><tr>';
+//     headerRow.forEach(function(header) {
+//         csvContent += `<th>${header}</th>`;
+//     });
+//     csvContent += '</tr></thead>';
+
+//     // Convert JSON data to CSV format
+//     jsonData.forEach(function(item) {
+//         var row = [];
+//         for (var key in item) {
+//             if (item.hasOwnProperty(key)) {
+//                 row.push(item[key]);
+//             }
+//         }
+//         csvContent += '<tr>'; // Add row start tag
+//         row.forEach(function(cell) {
+//             csvContent += `<td>${cell}</td>`;
+//         });
+//         csvContent += '</tr>'; // Add row end tag
+//         csvContent += '<tr><td colspan="' + headerRow.length + '"><hr></td></tr>'; // Add horizontal line
+//     });
+//     csvContent += '</table>';
+
+//     // Open a new window to display the CSV content
+//     var printWindow = window.open('', '_blank');
+//     printWindow.document.write('<html><head><title>Table Print</title></head><body>');
+//     printWindow.document.write(csvContent);
+//     printWindow.document.write('</body></html>');
+//     printWindow.document.close();
+//     printWindow.print();
+// }
+
     // Event listeners for export and print buttons
     $('#export_request_button').click(function() {
         console.log("export button clicked");
@@ -322,21 +400,7 @@ $(function () {
             }
         };
     loadInventoryData();   
-    // async function loadexpireData(){
-    //     headersLot.forEach(function (header_expire) {
-    //         $('#expire_head').append(`<th>${header_expire}</th>`);
-    //     });
-    //     try {
-    //         const data = await fetchData(`${BaseUrl}/lotexp/get/`);
-    //         // console.log(data.lotexp);
-    //         renderExpireTable(data.lotexp, columnsLot);
-    //         } 
-    //     catch (error) {
-    //         console.error("Error fetching data:", error);
-    //         }
-    //     };
-    // loadexpireData();
-    
+   
         // Replace the existing click event with change event for the dropdown
     $('#inventory_filter').change(async function () {
         const filter = $(this).val();
@@ -346,22 +410,22 @@ $(function () {
             switch (filter) {
                 case 'stock':
                     // Display all items
-                    renderInventoryTable(data.items, ColumnsItem);
+                    renderTable('inventory_table', 'ex-inventory_table', data.items, ColumnsItem, HeadersItem);
                     break;
                 case 'alert':
                     // Filter items with "in stock" less than or equal to 5
                     filteredData = data.items.filter(item => item['in stock'] <= 5);
-                    renderInventoryTable(filteredData, ColumnsItem);
+                    renderTable('inventory_table', 'ex-inventory_table', filteredData, ColumnsItem, HeadersItem);
                     break;
                 case 'safe':
                     // Filter items with "in stock" between 5 and 10 (inclusive)
                     filteredData = data.items.filter(item => item['in stock'] <= 10);
-                    renderInventoryTable(filteredData, ColumnsItem);
+                    renderTable('inventory_table', 'ex-inventory_table', filteredData, ColumnsItem, HeadersItem);
                     break;
                 case 'reorderLevel':
                     // Filter items with "in stock" between 5 and 10 (inclusive)
                     filteredData = data.items.filter(item => item['in stock'] <= item['reOrderLevel']);
-                    renderInventoryTable(filteredData, ColumnsItem);
+                    renderTable('inventory_table', 'ex-inventory_table', filteredData, ColumnsItem, HeadersItem);
                     break;
                 default:
                     console.error("Invalid filter option");
@@ -371,43 +435,7 @@ $(function () {
             console.error("Error fetching data:", error);
             }
         });
-    // $('#expiry_filter').change(async function () {
-    //     const filter = $(this).val();
-    //     if (filter === "") {
-    //         // Clear the table and return
-    //         $('#expire_table').DataTable().clear().draw();
-    //         return;
-    //     }
-    //     try {
-    //         const data = await fetchData(`${BaseUrl}/lotexp/get/`);
-    //         const currentDate = new Date();
-    //         let filteredData;
-    //         switch (filter) {
-    //             case 'present':
-    //                 filteredData = data.lotexp.filter(item => new Date(item['expiration']) <= currentDate);
-    //                 break;
-    //             case '30':
-    //                 const dateIn30Days = new Date();
-    //                 dateIn30Days.setDate(currentDate.getDate() + 30);
-    //                 filteredData = data.lotexp.filter(item => new Date(item['expiration']) > currentDate && new Date(item['expiration']) <= dateIn30Days);
-    //                 break;
-    //             case '60':
-    //                 const dateIn60Days = new Date();
-    //                 dateIn60Days.setDate(currentDate.getDate() + 60);
-    //                 filteredData = data.lotexp.filter(item => new Date(item['expiration']) > currentDate && new Date(item['expiration']) <= dateIn60Days);
-    //                 break;
-    //             case '90':
-    //                 const dateIn90Days = new Date();
-    //                 dateIn90Days.setDate(currentDate.getDate() + 90);
-    //                 filteredData = data.lotexp.filter(item => new Date(item['']) > currentDate && new Date(item['expiration']) <= dateIn90Days);
-    //                 break;
-    //             }
-    //         renderExpireTable(filteredData, columnsLot);
-    //         } 
-    //     catch (error) {
-    //         console.error("Error fetching data:", error);
-    //         }    
-    //     });
+
     function refreshTable() {
         fetchData(`${BaseUrl}/channels/get/`).then(data => {
             dataTableInstance.clear();
@@ -417,6 +445,4 @@ $(function () {
             console.error("Error fetching data:", error);
         });
     }
-    // Function to export JSON data to CSV
-
 });

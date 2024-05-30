@@ -9,7 +9,7 @@ from .redis_config import redis_connection
 # CELERY_RESULT_BACKEND = 'rpc://'
 CELERY_BROKER_URL = redis_connection
 CELERY_RESULT_BACKEND = redis_connection
-
+    
 celery = Celery(
     'main',
     broker=CELERY_BROKER_URL,

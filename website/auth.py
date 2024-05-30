@@ -102,6 +102,7 @@ def signup_signin():
             except:
                 flash("Failed to register user. Please try again.", "danger")
                 return redirect(url_for('auth.auth_page'))
+        
         else:
             flash("Passwords do not match.", "danger")
             return redirect(url_for('auth.auth_page'))
