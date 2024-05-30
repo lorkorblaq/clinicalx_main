@@ -20,5 +20,6 @@ ENV FLASK_APP=main.py
 # CMD ["flask", "run", "--host=0.0.0.0","--port=8080"]
 
 # Command to run the application with Gunicorn
-CMD ["gunicorn", "-k", "eventlet", "-w", "1", "-b", "0.0.0.0:8080", "main:app"]
+# Command to run the application with Gunicorn and Celery worker
+CMD ["gunicorn", "-k", "eventlet", "-w", "1", "-b", "0.0.0.0:8080", "main:app", "&", "celery", "-A", "website.celery_config.celery", "worker", "--pool=eventlet", "--loglevel=info", "-Q", "inventory"]
 
