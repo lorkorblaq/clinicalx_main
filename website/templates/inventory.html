@@ -8,8 +8,8 @@
     <main>
         <div class="container mt-5 mb-2">
             <h1>Inventory</h1>
-            <!-- <button  id="inventory_b" ><i class="fas fa-database"></i> Stock Levels</button> -->
-            <button  id="request_b" ><i class="fas fa-database"></i> Requisite</button>
+            <button  id="inventory_b" ><i class="fas fa-database"></i> Stock Items</button>
+            <button  id="request_b" ><i class="fas fa-database"></i> Requisition</button>
             <button id="importButton"><i class="fas fa-file-import"></i> Import Items </button>   
             <br> <br>
             <div class="" id="drawer_invent">
@@ -20,6 +20,8 @@
                     <option value="safe">Safe Stock, i.e less than 10 vials</option>
                     <option value="reorderLevel">Reorder threshold i.e items at or less than the reorder level</option>
                 </select> -->
+                <button id='all-items'>All items</button>
+                <button id='reorderable'>Reorderable</button>
                 <div class="table-responsive drawer" id="ex-inventory_table">
                     <table class="table table-bordered table-striped" id="inventory_table">
                         <thead class="head thead-dark">

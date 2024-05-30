@@ -5,9 +5,12 @@ $(function () {
     BaseUrl = "http://16.171.42.4:3000/api"
     // BaseUrl = "http://0.0.0.0:3000/api";
 
-    function fetchData(url) {
-        // Fetch data from the provided URL
-        return $.get(url);
+    async function fetchData(url) {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
     }
     function renderTable(tableId, exTableId, data, columns, headers) {
         // Destroy the existing DataTable instance for the specified table ID (if it exists)
@@ -180,7 +183,7 @@ $(function () {
             const data = await fetchData(`${BaseUrl}/lotexp/get/`);
             console.log(data.lotexp);
             // renderExpireTable(data.lotexp, columnsLot);
-            renderTable('expire_table', 'ex-expire_table',data.lotexp, columnsLot, headersLot);
+            renderTable('expire_table', 'ex-expire_table', data.lotexp, columnsLot, headersLot);
 
             } 
         catch (error) {
@@ -190,74 +193,40 @@ $(function () {
     loadexpireData();
     
 
-
-        // Replace the existing click event with change event for the dropdown
-    $('#inventory_filter').change(async function () {
-        const filter = $(this).val();
-        try {
-            const data = await fetchData(`${BaseUrl}/items/get/`);
-            let filteredData;
-            switch (filter) {
-                case 'stock':
-                    // Display all items
-                    renderInventoryTable(data.items, ColumnsItem);
-                    break;
-                case 'alert':
-                    // Filter items with "in stock" less than or equal to 5
-                    filteredData = data.items.filter(item => item['in stock'] <= 5);
-                    renderInventoryTable(filteredData, ColumnsItem);
-                    break;
-                case 'safe':
-                    // Filter items with "in stock" between 5 and 10 (inclusive)
-                    filteredData = data.items.filter(item => item['in stock'] <= 10);
-                    renderInventoryTable(filteredData, ColumnsItem);
-                    break;
-                default:
-                    console.error("Invalid filter option");
-                }
-            } 
-        catch (error) {
-            console.error("Error fetching data:", error);
-            }
-        });
-
-    $('#expiry_filter').change(async function () {
-        const filter = $(this).val();
-        if (filter === "") {
-            // Clear the table and return
+    $('#expiry_filter').on('input', async function () {
+        const filterValue = $(this).val();
+        
+        if (filterValue === "") {
+            // Clear the table if input is empty
             $('#expire_table').DataTable().clear().draw();
             return;
         }
+    
+        const filterDays = parseInt(filterValue, 10);
+    
+        if (isNaN(filterDays)) {
+            console.error("Invalid input: Not a number");
+            return;
+        }
+    
         try {
             const data = await fetchData(`${BaseUrl}/lotexp/get/`);
             const currentDate = new Date();
-            let filteredData;
-            switch (filter) {
-                case 'present':
-                    filteredData = data.lotexp.filter(item => new Date(item['expiration']) <= currentDate);
-                    break;
-                case '30':
-                    const dateIn30Days = new Date();
-                    dateIn30Days.setDate(currentDate.getDate() + 30);
-                    filteredData = data.lotexp.filter(item => new Date(item['expiration']) > currentDate && new Date(item['expiration']) <= dateIn30Days);
-                    break;
-                case '60':
-                    const dateIn60Days = new Date();
-                    dateIn60Days.setDate(currentDate.getDate() + 60);
-                    filteredData = data.lotexp.filter(item => new Date(item['expiration']) > currentDate && new Date(item['expiration']) <= dateIn60Days);
-                    break;
-                case '90':
-                    const dateIn90Days = new Date();
-                    dateIn90Days.setDate(currentDate.getDate() + 90);
-                    filteredData = data.lotexp.filter(item => new Date(item['']) > currentDate && new Date(item['expiration']) <= dateIn90Days);
-                    break;
-                }
-            renderExpireTable(filteredData, columnsLot);
-            } 
-        catch (error) {
+            const targetDate = new Date();
+            targetDate.setDate(currentDate.getDate() + filterDays);
+    
+            const filteredData = data.lotexp.filter(item => {
+                const expirationDate = new Date(item['expiration']);
+                return expirationDate > currentDate && expirationDate <= targetDate;
+            });
+    
+            renderTable('expire_table', 'ex-expire_table', filteredData, columnsLot, headersLot);
+            console.log(filteredData);
+        } catch (error) {
             console.error("Error fetching data:", error);
-            }    
-        });
+        }
+    });
+    
 
     
     //    Expired items data
