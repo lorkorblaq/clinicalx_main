@@ -52,7 +52,7 @@ function renderTime() {
     // Date
     
     // Time
-    ctx.font = "30px Helvetica Bold";
+    ctx.font = "60px Helvetica Bold";
     ctx.fillStyle = '#ff7e22';
     ctx.fillText(time, 0, 70);
 

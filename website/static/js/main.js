@@ -224,5 +224,6 @@ $(function () {
         console.log('Notification:', data.message);
         toastr.warning(data.message, 'Notification');
         // Display the notification to the user (e.g., using a toast or alert)
-    });    
+    });  
+      
 });
