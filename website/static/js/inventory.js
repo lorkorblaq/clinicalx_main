@@ -6,8 +6,6 @@ $(function () {
     const ColumnsRequest = ['bench','item', 'in_stock', 'tests_per_day', 'total_tests_in_stock', 'quantity_test_requested', 'total_days_to_last', 'amount_needed'];
     const HeadersRequest = ['Bench','Item', 'In Stock(vials)', 'Tests/Day', 'Total Stock(tests)', 'Quantity Requested(tests)', 'In-Stock To Last(days)', 'Amount needed(vials)'];
 
-    const columnsLot = ['item', 'lot_numb', 'expiration', 'quantity', 'created at'];
-    const headersLot = ['Item', 'Lot','Expiration', 'Quantity', 'Created At'];
     BaseUrl = "http://16.171.42.4:3000/api"
     // BaseUrl = "http://0.0.0.0:3000/api";
 
@@ -17,15 +15,12 @@ $(function () {
         $("#request_invent").hide()  ;
         $("#drawer_invent ").show();
         $("#tabel_request").hide();
-
-
     });
 
     $('#request_b').click(function() {
         $("#drawer_invent ").hide();
         $("#request_invent").show() ;
         // $("#tabel_request").hide();
-
     });
 
     $("#submit_request").click(function() {
@@ -77,62 +72,62 @@ $(function () {
     }
     // Function to render a DataTable instance for the specified table ID
     function renderTable(tableId, exTableId, data, columns, headers) {
-    // Check if DataTable is already initialized and destroy it if it is
-    if ($.fn.DataTable.isDataTable(`#${tableId}`)) {
-        var table = $(`#${tableId}`).DataTable();
-        table.clear().destroy();
-    }
+        // Check if DataTable is already initialized and destroy it if it is
+        if ($.fn.DataTable.isDataTable(`#${tableId}`)) {
+            var table = $(`#${tableId}`).DataTable();
+            table.clear().destroy();
+        }
 
-    // Clear the table headers
-    $(`#${tableId}_head`).empty();
+        // Clear the table headers
+        $(`#${tableId}_head`).empty();
 
-    // Append new headers to the table
-    headers.forEach(function(header) {
-        $(`#${tableId}_head`).append(`<th>${header}</th>`);
-    });
-
-    // Initialize a new DataTable instance for the specified table ID
-    $(`#${tableId}`).DataTable({
-        data: data,
-        columns: columns.map(col => ({ data: col })),
-        // Add any other DataTable options as needed
-    });
-
-    // Create buttons
-    var exportButton = $('<button>').text(' Export').addClass('button fas fa-file-export');
-    var printButton = $('<button>').text(' Print').addClass('button fas fa-print');
-    var deleteDB = $('<button>').text(' Delete').addClass('button fas fa-trash-alt');
-
-    // Define button actions
-    exportButton.click(function() {
-        exportJSONData(data);
-    });
-
-    printButton.click(function() {
-        printJSONDataAsCSV(data);
-    });
-
-    deleteDB.click(function() {
-        fetch(`${BaseUrl}/items/deleteall/`, {
-            method: 'DELETE'
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
-            alert('Items deleted successfully!');
-            renderTable(tableId, exTableId, [], columns, headers); // Re-render table with empty data
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-            alert('Error deleting items');
+        // Append new headers to the table
+        headers.forEach(function(header) {
+            $(`#${tableId}_head`).append(`<th>${header}</th>`);
         });
-    });
 
-    // Append buttons to exTableId if not already appended
-    var buttonContainer = $(`#${exTableId}`);
-    if (buttonContainer.find('.button').length === 0) {
-        buttonContainer.append(exportButton).append(printButton).append(deleteDB);
-    }
+        // Initialize a new DataTable instance for the specified table ID
+        $(`#${tableId}`).DataTable({
+            data: data,
+            columns: columns.map(col => ({ data: col })),
+            // Add any other DataTable options as needed
+        });
+
+        // Create buttons
+        var exportButton = $('<button>').text(' Export').addClass('button fas fa-file-export');
+        var printButton = $('<button>').text(' Print').addClass('button fas fa-print');
+        var deleteDB = $('<button>').text(' Delete').addClass('button fas fa-trash-alt');
+
+        // Define button actions
+        exportButton.click(function() {
+            exportJSONData(data);
+        });
+
+        printButton.click(function() {
+            printJSONDataAsCSV(data);
+        });
+
+        deleteDB.click(function() {
+            fetch(`${BaseUrl}/items/deleteall/`, {
+                method: 'DELETE'
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                alert('Items deleted successfully!');
+                renderTable(tableId, exTableId, [], columns, headers); // Re-render table with empty data
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('Error deleting items');
+            });
+        });
+
+        // Append buttons to exTableId if not already appended
+        var buttonContainer = $(`#${exTableId}`);
+        if (buttonContainer.find('.button').length === 0) {
+            buttonContainer.append(exportButton).append(printButton).append(deleteDB);
+        }
     }
 
     $('#importButton').click(function() {
@@ -182,7 +177,6 @@ $(function () {
             alert('Error importing data');
         });
     }
-
 
     function exportJSONData(data) {
         // Convert JSON data to CSV format
@@ -324,49 +318,6 @@ $(function () {
         return result;
     }
 
-// Function to print the table content
-// function printJSONDataAsCSV(jsonData) {
-//     // Add header row
-//     var headerRow = [];
-//     for (var key in jsonData[0]) {
-//         if (jsonData[0].hasOwnProperty(key)) {
-//             headerRow.push(key);
-//         }
-//     }
-//     var csvContent = '<table border="2">';
-//     // Add header row to CSV content
-//     csvContent += '<thead><tr>';
-//     headerRow.forEach(function(header) {
-//         csvContent += `<th>${header}</th>`;
-//     });
-//     csvContent += '</tr></thead>';
-
-//     // Convert JSON data to CSV format
-//     jsonData.forEach(function(item) {
-//         var row = [];
-//         for (var key in item) {
-//             if (item.hasOwnProperty(key)) {
-//                 row.push(item[key]);
-//             }
-//         }
-//         csvContent += '<tr>'; // Add row start tag
-//         row.forEach(function(cell) {
-//             csvContent += `<td>${cell}</td>`;
-//         });
-//         csvContent += '</tr>'; // Add row end tag
-//         csvContent += '<tr><td colspan="' + headerRow.length + '"><hr></td></tr>'; // Add horizontal line
-//     });
-//     csvContent += '</table>';
-
-//     // Open a new window to display the CSV content
-//     var printWindow = window.open('', '_blank');
-//     printWindow.document.write('<html><head><title>Table Print</title></head><body>');
-//     printWindow.document.write(csvContent);
-//     printWindow.document.write('</body></html>');
-//     printWindow.document.close();
-//     printWindow.print();
-// }
-
     // Event listeners for export and print buttons
     $('#export_request_button').click(function() {
         console.log("export button clicked");
@@ -376,18 +327,6 @@ $(function () {
     $('#print_request_button').click(function() {
         printTable('request_invent_table');
     });
-
-    function renderInventoryTable(data, columns) {
-        if ($.fn.DataTable.isDataTable('#inventory_table')) {
-            $('#inventory_table').DataTable().clear().destroy();
-        }
-        // const items = data.items;
-        $('#inventory_table').DataTable({
-            data: data,
-            columns: columns.map(col => ({ data: col })),
-            // responsive: true
-        });
-        }
 
     async function loadInventoryData() {
         try {
@@ -399,7 +338,8 @@ $(function () {
             console.error("Error fetching data:", error);
             }
         };
-    loadInventoryData();   
+    loadInventoryData();
+
     $('#all-items').click(async function() {
         console.log("All items clicked");
         try {
@@ -423,6 +363,20 @@ $(function () {
             console.error("Error fetching data:", error);
             }
         });
+    
+    $('#check_all').change(function() {
+        $('.category_filter').prop('checked', this.checked);
+    });
+
+    $('.category_filter').change(function() {
+        if (!this.checked) {
+            $('#check_all').prop('checked', false);
+        } else {
+            if ($('.category_filter:checked').length === $('.category_filter').length) {
+                $('#check_all').prop('checked', true);
+            }
+        }
+    });
 
     function refreshTable() {
         fetchData(`${BaseUrl}/channels/get/`).then(data => {
@@ -433,4 +387,7 @@ $(function () {
             console.error("Error fetching data:", error);
         });
     }
+
+    // tooltips
+    $('[data-toggle="tooltip"]').tooltip();
 });
