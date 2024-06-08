@@ -12,6 +12,11 @@ body {
     background-position: center down; /* Center the background image */
     background-attachment: fixed; 
 }
+
+h1 {
+    color: #747F9D;
+
+}
 .bodyof {
     width: 10%;
     margin-left: 50px

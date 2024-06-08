@@ -25,6 +25,11 @@ def home():
 def dashboard():
     return render_template('dashboard.html', dash_app_url='http://localhost:8050')
 
+@views.route("/events",  strict_slashes=False)
+@auth_required
+def events():
+    return render_template("/templates_for_events/events.html", data=data)
+
 @views.route("/inventory",  strict_slashes=False)
 @auth_required
 def inventory():
