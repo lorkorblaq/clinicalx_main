@@ -19,7 +19,7 @@ print('socketio:')
 print(socketio)
 
 # print(redis_client.hgetall('users'))
-API_BASE = 'http://127.0.0.1:3000/api/'
+API_BASE = 'https://labpal.com.ng/api'
 print('API_BASE:', API_BASE)
 def notify_clients(data):
     socketio.emit('dataUpdated', data)

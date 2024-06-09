@@ -1,6 +1,6 @@
 $(function() {
     console.log('port.js loaded');
-    BaseUrl = "http://16.171.42.4/api";
+    BaseUrl = "https://labpal.com.ng/api";
     // BaseUrl = "http://0.0.0.0:3000/api";
 
     // const url_channels = `${BaseUrl}/channels/get`

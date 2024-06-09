@@ -5,8 +5,8 @@
 /* @import "channels.css"; */
 
 body {
-    /* background-color: white; */
-    background-image: url('../images/CLINICALX.png'); 
+    background-color: #DBDEE3;
+    /* background-image: url('../images/CLINICALX.png');  */
     background-size: 100% 100%;  /* Cover the entire background */
     background-repeat: no-repeat; /* Do not repeat the background image */
     background-position: center down; /* Center the background image */

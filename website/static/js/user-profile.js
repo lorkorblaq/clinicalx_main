@@ -1,7 +1,7 @@
 $(function () {
     console.log("user-profile.js loaded");
     // Baseurl= 'http://13.53.70.208:3000/api'
-    BaseUrl = "http://16.171.42.4:3000/api";
+    BaseUrl = "https://labpal.com.ng/api";
 
     function setCookie(name, value, hours) {
         var expires = "";

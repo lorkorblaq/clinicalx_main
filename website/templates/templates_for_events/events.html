@@ -12,102 +12,102 @@
             <button id="createButton">Create Event</button>
         </div>
 
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-        <!-- Modal content -->
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Describe your events</h2>
-            <div class="tool" id="tool1">
-                <div class="iconevents">📂</div>
-                <div class="description">
-                    <h3>Quality Control</h3>
-                    <p>Your quality indicators, performance, trends, biases</p>
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Describe your events</h2>
+                <div class="tool" id="tool1">
+                    <div class="iconevents">📂</div>
+                    <div class="description">
+                        <h3>Quality Control</h3>
+                        <p>Your quality indicators, performance, trends, biases</p>
+                    </div>
+                </div>
+                <div class="tool" id="tool2">
+                    <div class="iconevents">🧭</div>
+                    <div class="description">
+                        <h3>Machine</h3>
+                        <p>Machine performance, maintenance, downtimes and troubleshooting</p>
+                    </div>
+                </div>
+                <div class="tool" id="tool3">
+                    <div class="iconevents">💻</div>
+                    <div class="description">
+                        <h3>Operations</h3>
+                        <p>Stock outs, personnel</p>
+                    </div>
+                </div>
+                <div class="tool" id="tool4">
+                    <div class="iconevents">🧩</div>
+                    <div class="description">
+                        <h3>Personal Tasks</h3>
+                        <p>To-do</p>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button id="goBack">Go Back</button>
+                    <button class="close">Close</button>
                 </div>
             </div>
-            <div class="tool" id="tool2">
-                <div class="iconevents">🧭</div>
-                <div class="description">
-                    <h3>Machine</h3>
-                    <p>Machine performance, maintenance, downtimes and troubleshooting</p>
-                </div>
+
+            <!-- Additional Modal Content for Tool 1 -->
+            <div id="additionalContent1" class="modal-content" style="display:none;">
+                <span class="close">&times;</span>
+                <h2>Quality Control</h2>
+                <form>
+                    <label for="qualityIndicator">Machine:</label>
+                    <select id="qualityIndicator" name="qualityIndicator">
+                        <option value="indicator1">Indicator 1</option>
+                        <option value="indicator2">Indicator 2</option>
+                    </select><br>
+                    <label for="tags">Items:</label>
+                    <div id="tag-container">
+                        <input type="text" id="tags" name="tags" placeholder="Enter tags separated by commas">
+                    </div>
+                    <br>
+                    <label for="additionalNotes">Comment:</label>
+                    <div>
+                        <textarea id="additionalNotes" name="additionalNotes" class="form-control"></textarea><br><br>
+                    </div>
+                    <button type="submit">Submit</button>
+                    <button type="button" class="back">Back</button>
+                </form>
             </div>
-            <div class="tool" id="tool3">
-                <div class="iconevents">💻</div>
-                <div class="description">
-                    <h3>Operations</h3>
-                    <p>Stock outs, personnel</p>
-                </div>
+
+            <!-- Additional Modal Content for Tool 2 -->
+            <div id="additionalContent2" class="modal-content" style="display:none;">
+                <span class="close">&times;</span>
+                <h2>Machine History</h2>
+                <form>
+                    <label for="machineIndicator">Machine(s):</label>
+                    <select id="machineIndicator" name="machineIndicator">
+                        <option value="indicator1">Indicator 1</option>
+                        <option value="indicator2">Indicator 2</option>
+                    </select><br>
+                    <label for="machineIndicator">Maintenance:</label>
+                    <select id="machineIndicator" name="machineIndicator">
+                        <option value="indicator1">Indicator 1</option>
+                        <option value="indicator2">Indicator 2</option>
+                    </select><br>
+                    <label for="maintenance">Maintenance:</label>
+                    <input type="text" id="maintenance" name="maintenance"><br><br>
+                    <label for="downtimes">Downtimes:</label>
+                    <input type="text" id="downtimes" name="downtimes"><br><br>
+                    <label for="troubleshooting">Troubleshooting:</label>
+                    <input type="text" id="troubleshooting" name="troubleshooting"><br><br>
+                    <button type="submit">Submit</button>
+                    <button type="button" class="back">Back</button>
+                </form>
             </div>
-            <div class="tool" id="tool4">
-                <div class="iconevents">🧩</div>
-                <div class="description">
-                    <h3>Personal Tasks</h3>
-                    <p>To-do</p>
-                </div>
-            </div>
-            <div class="buttons">
-                <button id="goBack">Go Back</button>
-                <button class="close">Close</button>
-            </div>
+
+            <!-- Add similar content for other tools as needed -->
         </div>
 
-        <!-- Additional Modal Content for Tool 1 -->
-        <div id="additionalContent1" class="modal-content" style="display:none;">
-            <span class="close">&times;</span>
-            <h2>Quality Control</h2>
-            <form>
-                <label for="qualityIndicator">Machine:</label>
-                <select id="qualityIndicator" name="qualityIndicator">
-                    <option value="indicator1">Indicator 1</option>
-                    <option value="indicator2">Indicator 2</option>
-                </select><br>
-                <label for="tags">Items:</label>
-                <div id="tag-container">
-                    <input type="text" id="tags" name="tags" placeholder="Enter tags separated by commas">
-                </div>
-                <br>
-                <label for="additionalNotes">Comment:</label>
-                <div>
-                    <textarea id="additionalNotes" name="additionalNotes" class="form-control"></textarea><br><br>
-                </div>
-                <button type="submit">Submit</button>
-                <button type="button" class="back">Back</button>
-            </form>
-        </div>
-
-        <!-- Additional Modal Content for Tool 2 -->
-        <div id="additionalContent2" class="modal-content" style="display:none;">
-            <span class="close">&times;</span>
-            <h2>Machine History</h2>
-            <form>
-                <label for="machineIndicator">Machine(s):</label>
-                <select id="machineIndicator" name="machineIndicator">
-                    <option value="indicator1">Indicator 1</option>
-                    <option value="indicator2">Indicator 2</option>
-                </select><br>
-                <label for="machineIndicator">Maintenance:</label>
-                <select id="machineIndicator" name="machineIndicator">
-                    <option value="indicator1">Indicator 1</option>
-                    <option value="indicator2">Indicator 2</option>
-                </select><br>
-                <label for="maintenance">Maintenance:</label>
-                <input type="text" id="maintenance" name="maintenance"><br><br>
-                <label for="downtimes">Downtimes:</label>
-                <input type="text" id="downtimes" name="downtimes"><br><br>
-                <label for="troubleshooting">Troubleshooting:</label>
-                <input type="text" id="troubleshooting" name="troubleshooting"><br><br>
-                <button type="submit">Submit</button>
-                <button type="button" class="back">Back</button>
-            </form>
-        </div>
-
-        <!-- Add similar content for other tools as needed -->
-    </div>
-
-    
         <br>
         <div>
+            
             <div class="card">
                 <div class="card-header">
                     2021-09-01

@@ -4,7 +4,7 @@ $(function () {
     const headersPIS = ['_id','created at', 'user', 'item', 'bench', 'machine', 'quantity', 'description', ''];
 
     // BaseUrl = "http://0.0.0.0:3000/api";
-    BaseUrl = "http://16.171.42.4:3000/api"
+    BaseUrl = "https://labpal.com.ng/api"
     
     function getCookie(name) {
         let cookieArr = document.cookie.split("; ");
