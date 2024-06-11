@@ -2,7 +2,7 @@ $(function () {
     console.log("expiration.js loaded");
     const columnsLot = ['item', 'lot_numb', 'expiration', 'quantity', 'created at'];
     const headersLot = ['Item', 'Lot','Expiration', 'Quantity', 'Created At'];
-    BaseUrl = "http://16.171.42.4:3000/api"
+    BaseUrl = "https://labpal.com.ng/api"
     // BaseUrl = "http://0.0.0.0:3000/api";
 
     async function fetchData(url) {

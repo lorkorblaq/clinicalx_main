@@ -27,7 +27,7 @@ $(function () {
         return null;
     }
     const user_id = getCookie('user_id');
-    const userUrl = `${BaseUrl}/user/get/${user_id}`
+    const userUrl = `${BaseUrl}/user/get/${user_id}/`
     const put_url = `${BaseUrl}/user/put/${user_id}/`;
     // const url_item_get = `${BaseUrl}/user/put/`;
     // const url_item_put = `${BaseUrl}/item/put/`;

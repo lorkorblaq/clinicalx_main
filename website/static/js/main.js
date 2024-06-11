@@ -1,6 +1,6 @@
 $(function () {
     console.log("MAIN ready");
-    BaseUrl = "http://16.171.42.4:3000/api/"
+    BaseUrl = "https://labpal.com.ng/api"
     // BaseUrl = "http://0.0.0.0:3000/api";
     // function exportJSONData(data) {
     //     // Convert JSON data to CSV format
