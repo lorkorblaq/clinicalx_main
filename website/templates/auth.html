@@ -1,51 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-      <meta charset="UTF-8">
-      <title>LabPal</title>
-      <link rel="stylesheet" href="../static/css/auth.css">
-      <link rel="icon" type="image/png" href="#">
-  </head>
-
-  <body>
+<head>
+    <meta charset="UTF-8">
+    <title>LabPal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/auth.css">
+    <link rel="icon" type="image/png" href="#">
+</head>
+<body>
     <h1 style="text-align: center;">LABPAL</h1>
     <div class="container">
-      <button> Register Org.</button>
-      <form class="signUp" action="{{ url_for('auth.signup_signin') }}" method="post">
-        <h5>Create Account</h5>
-          {{ register_form.hidden_tag() }}
-          {{ register_form.org }}
-          {{ register_form.firstname }}
-          {{ register_form.lastname }}
-          {{ register_form.email }}
-          {{ register_form.password }}
-          {{ register_form.confirm_password }}
-        <button class="form-btn sx log-in" type="button" onclick="showSignInForm()">Log In</button>
-        <button class="form-btn dx" type="submit" name="signup">Sign Up</button>
-      </form>
-      
-      <form class="signIn" action="{{ url_for('auth.signup_signin') }}" method="post">
-        <h5>Welcome</br>Back!</h5>
-          {{ login_form.hidden_tag() }}
-          {{ login_form.email }}
-          {{ login_form.password }}
-        <button class="form-btn sx back" type="button" onclick="showSignUpForm()">Sign up</button>
-        <button class="form-btn dx" type="submit" name="signin">Log In</button>
-      </form>
-
-      {% with messages = get_flashed_messages() %}
-        {% if messages %}
-          <div class="flash-messages">
-              {% for message in messages %}
-                <script>
-                  alert("{{ message }}");
-                </script>
-              {% endfor %}
-            </div>
-        {% endif %}
-      {% endwith %}
+        <button> Register Org.</button>
+        <form class="signUp" action="{{ url_for('auth.signup_signin') }}" method="post">
+            <h5>Create Account</h5>
+            {{ register_form.hidden_tag() }}
+            {{ register_form.org }}
+            {{ register_form.firstname }}
+            {{ register_form.lastname }}
+            {{ register_form.email }}
+            {{ register_form.password }}
+            {{ register_form.confirm_password }}
+            <button class="form-btn sx log-in" type="button" onclick="showSignInForm()">Log In</button>
+            <button class="form-btn dx" type="submit" name="signup">Sign Up</button>
+        </form>
+        <form class="signIn" action="{{ url_for('auth.signup_signin') }}" method="post">
+            <h5>Welcome</br>Back!</h5>
+            {{ login_form.hidden_tag() }}
+            {{ login_form.email }}
+            {{ login_form.password }}
+            <button class="form-btn sx back" type="button" onclick="showSignUpForm()">Sign up</button>
+            <button class="form-btn dx" type="submit" name="signin">Log In</button>
+        </form>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for message in messages %}
+                        <script>
+                            alert("{{ message }}");
+                        </script>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="../static/js/auth.js" type="text/javascript"></script>
-  </body>
+</body>
 </html>

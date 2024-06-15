@@ -1,13 +1,19 @@
-$(".log-in").click(function(){
-    $(".signIn").addClass("active-dx");
-    $(".signUp").addClass("inactive-sx");
-    $(".signUp").removeClass("active-sx");
-    $(".signIn").removeClass("inactive-dx");
+$(document).ready(function() {
+  function showSignInForm() {
+    $('.signIn').addClass('active-dx').removeClass('inactive-sx');
+    $('.signUp').addClass('inactive-dx').removeClass('active-sx');
+  }
+
+  function showSignUpForm() {
+    $('.signIn').addClass('inactive-sx').removeClass('active-dx');
+    $('.signUp').addClass('active-sx').removeClass('inactive-dx');
+  }
+
+  $('.log-in').on('click', function() {
+    showSignInForm();
   });
-  
-  $(".back").click(function(){
-    $(".signUp").addClass("active-sx");
-    $(".signIn").addClass("inactive-dx");
-    $(".signIn").removeClass("active-dx");
-    $(".signUp").removeClass("inactive-sx");
+
+  $('.back').on('click', function() {
+    showSignUpForm();
   });
+});

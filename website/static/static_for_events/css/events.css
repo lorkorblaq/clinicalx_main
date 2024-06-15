@@ -1,3 +1,41 @@
+/* nav buttons */
+
+.nav {
+    display: flex;
+    gap: 50px;
+    justify-content: left;}
+
+.nav-link {
+    color: #3357A9;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 10px 10px;
+    border-radius: 15px;
+    font-size: 1em;
+}
+
+.nav-link:hover {
+    background-color: lightgray;
+}
+
+.nav-link.active {
+    background-color: #343A40;
+    color: white;
+
+}
+
+.events {
+    display: none;
+}
+
+.events.active {
+    display: block;
+}
+
+
+
+
+
 #myModal {
     display: none; 
     position: fixed; 
@@ -21,12 +59,14 @@
 }
 
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
+    color: red;
+    float: center;
     font-weight: bold;
 }
-
+#closebtn{
+    background-color: #b31e1e;
+    color: #ccc;
+}
 .close:hover,
 .close:focus {
     color: black;
@@ -69,8 +109,7 @@
 }
 
 button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
+    padding: 10px 10px;
     color: white;
     border: none;
     border-radius: 5px;
@@ -78,7 +117,7 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #7CAEDA;
 }
 
 #tag-container {
@@ -114,3 +153,186 @@ button:hover {
     padding: 0 5px;
     font-weight: bold;
 }
+
+
+/* machines */
+
+.modal-content {
+    position: relative;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    width: 50%;
+    margin: auto;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: linear-gradient(to right, #e25330, #3157aa); /* Gradient background */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.menu-item {
+    padding: 10px 20px;
+    color: white;
+    cursor: pointer;
+}
+
+.menu-item.active {
+    background-color: #1F2327;
+    border-radius: 15px;
+}
+
+.add-button {
+    /* background-color: #43b581; */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.content {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+/* #maintainance */
+.tag-container {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    position: relative;
+    margin-top: 3px;
+}
+
+.tag {
+    background-color: #7CAEDA;
+    color: white;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 4px;
+    display: inline-block;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.tag .remove-tag {
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+.textarea {
+    flex: 1;
+    border: none;
+    outline: none;
+    resize: none; /* Prevent resizing to maintain layout */
+    background-color: #F9F9F9;
+}
+
+.options-container {
+    margin-top: 10px;
+    font-size: 0.7em;
+
+}
+
+.option-button {
+    background-color: #7CAEDA;
+    color: white;
+    width: 65px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+
+
+/* to do */
+.todo-container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.todo-input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#new-todo {
+    width: 70%;
+    padding: 5px;
+    font-size: 16px;
+}
+
+#add-todo {
+    width: 30%;
+    padding: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+ul#todo-list {
+    list-style: none;
+    padding: 0;
+}
+
+ul#todo-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+ul#todo-list li .todo-actions {
+    display: flex;
+    gap: 5px;
+}
+
+ul#todo-list li .todo-actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+
+/* to-do check lists */
+.checklist-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+    cursor:move;
+}
+
+.checklist-item button {
+    margin-left: 5px;
+}
+
+
+

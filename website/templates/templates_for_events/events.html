@@ -9,8 +9,15 @@
         <div>
             <!-- Trigger/Open The Modal -->
             <h1>Events</h1>
-            <button id="createButton">Create Event</button>
+            <nav class="nav nav-borders mt-3">
+                <button class="" id="createButton">Create Event</button>
+                <a class="nav-link" id="sec-btn" data-target="#QCEvents">Q.Control Events</a>
+                <a class="nav-link" id="not-btn" data-target="#machineEvents">Machine Events</a>
+                <a class="nav-link" id="data-btn" data-target="#operationEvents">Operations Events</a>
+                <a class="nav-link" id="bill-btn" data-target="#to-doEvents">To-Do Events</a>
+            </nav>
         </div>
+        <hr>
 
         <!-- The Modal -->
         <div id="myModal" class="modal">
@@ -46,10 +53,7 @@
                         <p>To-do</p>
                     </div>
                 </div>
-                <div class="buttons">
-                    <button id="goBack">Go Back</button>
-                    <button class="close">Close</button>
-                </div>
+                <button id="closebtn" class="close">Close</button>
             </div>
 
             <!-- Additional Modal Content for Tool 1 -->
@@ -57,20 +61,24 @@
                 <span class="close">&times;</span>
                 <h2>Quality Control</h2>
                 <form>
+                    <label for="datePicker">Date:</label>
+                    <input type="text" class="form-control datePicker" id="" placeholder="Select date">
+
                     <label for="qualityIndicator">Machine:</label>
                     <select id="qualityIndicator" name="qualityIndicator">
                         <option value="indicator1">Indicator 1</option>
                         <option value="indicator2">Indicator 2</option>
                     </select><br>
-                    <label for="tags">Items:</label>
+
                     <div id="tag-container">
-                        <input type="text" id="tags" name="tags" placeholder="Enter tags separated by commas">
+                        <input type="text" id="tags" name="tags" placeholder="Enter affected item(s) separated by commas">
+                    </div><br>
+
+                    <div class="content" id="qc-content">
+                        <textarea class="form-control" id="RCQC" placeholder="Root Cause" aria-label="Root Cause"></textarea>
+                        <textarea class="form-control mt-2" id="CAQC" placeholder="Corrective action" aria-label="Corrective action"></textarea>
                     </div>
-                    <br>
-                    <label for="additionalNotes">Comment:</label>
-                    <div>
-                        <textarea id="additionalNotes" name="additionalNotes" class="form-control"></textarea><br><br>
-                    </div>
+
                     <button type="submit">Submit</button>
                     <button type="button" class="back">Back</button>
                 </form>
@@ -81,22 +89,87 @@
                 <span class="close">&times;</span>
                 <h2>Machine History</h2>
                 <form>
+                    <input type="text" class="form-control datePicker" id="" placeholder="Select date">                  
+                    <input type="text" class="mt-2" id="timepicker">
+
                     <label for="machineIndicator">Machine(s):</label>
                     <select id="machineIndicator" name="machineIndicator">
                         <option value="indicator1">Indicator 1</option>
                         <option value="indicator2">Indicator 2</option>
-                    </select><br>
-                    <label for="machineIndicator">Maintenance:</label>
-                    <select id="machineIndicator" name="machineIndicator">
-                        <option value="indicator1">Indicator 1</option>
-                        <option value="indicator2">Indicator 2</option>
-                    </select><br>
-                    <label for="maintenance">Maintenance:</label>
-                    <input type="text" id="maintenance" name="maintenance"><br><br>
-                    <label for="downtimes">Downtimes:</label>
-                    <input type="text" id="downtimes" name="downtimes"><br><br>
-                    <label for="troubleshooting">Troubleshooting:</label>
-                    <input type="text" id="troubleshooting" name="troubleshooting"><br><br>
+                    </select>
+            
+                    <div class="menu">
+                        <div class="menu-item active" id="maintenance-tab">Maintenance</div>
+                        <div class="menu-item" id="downtimes-tab">Downtime</div>
+                        <div class="menu-item" id="troubleshooting-tab">Troubleshooting</div>
+                    </div>
+
+                    <div class="content" id="maintenance-content">
+                        <div class="options-container">
+                            <button class="option-button" data-value="Daily">Daily</button>
+                            <button class="option-button" data-value="Weekly">Weekly</button>
+                            <button class="option-button" data-value="Monthly">Monthly</button>
+                            <button class="option-button" data-value="Quarterly">Quarterly</button>
+                            <button class="option-button" data-value="Annually">Annually</button>
+                        </div>
+                        <div class="tag-container">
+                            <label><input type="checkbox" class="option-checkbox" data-value="Option 1"> Done</label><br>
+                            <input type="text" class="textarea">
+                            <br>
+                            <textarea class="form-control" id="commentsMaint" placeholder="Comments..." aria-label="comments"></textarea>
+                        </div>
+                        <!-- <textarea class="form-control tag-container" id="maintenance" placeholder="Maintenance Done" aria-label="Maintenance"></textarea> -->
+                    </div>
+                    
+            
+                    <div class="content" id="downtimes-content" style="display:none;">
+                        <textarea class="form-control" id="RCdowntimes" placeholder="Root Cause" aria-label="Root Cause"></textarea>
+                        <textarea class="form-control mt-2" id="CAdowntimes" placeholder="Corrective action" aria-label="Corrective action"></textarea>
+                    </div>
+            
+                    <div class="content" id="troubleshooting-content" style="display:none;">
+                        <textarea class="form-control" id="RCtroubleshooting" placeholder="Root Cause" aria-label="Root Cause"></textarea>
+                        <textarea class="form-control mt-2" id="CAtroubleshooting" placeholder="Corrective action" aria-label="Corrective action"></textarea>                    </div>
+                    <button type="submit">Submit</button>
+                    <button type="button" class="back">Back</button>
+                </form>
+            </div>
+
+            <div id="additionalContent3" class="modal-content" style="display:none;">
+                <span class="close">&times;</span>
+                <h2>Operations</h2>
+                <form>
+                    <label for="datePicker">Date:</label>
+                    <input type="text" class="form-control datePicker" id="" placeholder="Select date">
+                    <div class="mt-3" id="tag-container">
+                        <input type="text" id="tags" name="tags" placeholder="Occurence(s) separated by comma...">
+                    </div>
+                    <br>
+                    <div class="content" id="qc-content">
+                        <textarea class="form-control mt-2" id="CAQC" placeholder="Actionings..." aria-label="Corrective action"></textarea>
+                    </div>
+                    <button type="submit">Submit</button>
+                    <button type="button" class="back">Back</button>
+                </form>
+            </div>
+
+            <div id="additionalContent4" class="modal-content" style="display:none;">
+                <span class="close">&times;</span>
+                <h2>Personal Tasks</h2>
+                <form>
+                    <label for="datePicker">Date:</label>
+                    <input type="text" class="form-control datePicker" id="" placeholder="Select date">
+                    
+                    <div class="todo-container">
+                        <h6>Breaking things down so you don't break down</h6>
+                        <div class="todo-input-container">
+                            <input type="text" id="new-todo" placeholder="Add new item...">
+                            <button id="add-todo">+</button>
+                        </div>
+                        <ul id="todo-list">
+                            <!-- To-do items will be added here -->
+                        </ul>
+                    </div>
                     <button type="submit">Submit</button>
                     <button type="button" class="back">Back</button>
                 </form>
@@ -104,10 +177,10 @@
 
             <!-- Add similar content for other tools as needed -->
         </div>
-
         <br>
-        <div>
-            
+
+        <div class="events" id="QCEvents">
+            <h3>Quality Control Events</h3>
             <div class="card">
                 <div class="card-header">
                     2021-09-01
@@ -116,7 +189,103 @@
                     <p>Card Content</p>
                 </div>
             </div>
+            <div class="table-responsive" id ="Ex-operationEvents_table">
+                <table class="table table-bordered table-striped" id="operationEvents_table">
+                    <thead class="head thead-dark">
+                        <tr id="reports_h">
+                        </tr>
+                    </thead>
+                    <tbody id="tbody" class="body" >
+                        <tr id='reports_r'>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
+    
+        <div class="events" id="machineEvents">
+            <h3>Machine Events</h3>
+            <div class="table-responsive" id ="Ex-operationEvents_table">
+                <table class="table table-bordered table-striped" id="operationEvents_table">
+                    <thead class="head thead-dark">
+                        <tr id="reports_h">
+                        </tr>
+                    </thead>
+                    <tbody id="tbody" class="body" >
+                        <tr id='reports_r'>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    
+        <div class="events" id="operationEvents">
+            <h3>Operations Events</h3>
+                <div class="table-responsive" id ="Ex-operationEvents_table">
+                    <table class="table table-bordered table-striped" id="operationEvents_table">
+                        <thead class="head thead-dark">
+                            <tr id="reports_h">
+                            </tr>
+                        </thead>
+                        <tbody id="tbody" class="body" >
+                            <tr id='reports_r'>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+    
+        <div class="events" id="to-doEvents">
+            <h3>To Do Events</h3>
+            <div class="card mb-3">
+                <div class="card-header">
+                    2021-09-01
+                </div>
+                <div class="card-body">
+                    <ul id="checklistQC" class="list-group sortable">
+                        <li class="list-group-item checklist-item">
+                            <span>Task 1</span>
+                            <div class="checklist-actions">
+                                <button class="edit-btn">✏️</button>
+                                <button class="delete-btn">🗑️</button>
+                            </div>
+                        </li>
+                        <li class="list-group-item checklist-item">
+                            <span>Task 2</span>
+                            <div class="checklist-actions">
+                                <button class="edit-btn">✏️</button>
+                                <button class=" delete-btn">🗑️</button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    2021-09-01
+                </div>
+                <div class="card-body">
+                    <ul id="checklistMachine" class="list-group sortable">
+                        <li class="list-group-item checklist-item">
+                            <span>Task 1</span>
+                            <div class="checklist-actions">
+                                <button class="btn btn-sm btn-warning edit-btn">✏️</button>
+                                <button class="btn btn-sm btn-danger delete-btn">🗑️</button>
+                            </div>
+                        </li>
+                        <li class="list-group-item checklist-item">
+                            <span>Task 2</span>
+                            <div class="checklist-actions">
+                                <button class="btn btn-sm btn-warning edit-btn">✏️</button>
+                                <button class="btn btn-sm btn-danger delete-btn">🗑️</button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
     </main>
 {% endblock %}
 

@@ -84,4 +84,7 @@ h1 {
     background-color: antiquewhite;
 }
 
+.expire-table {
+    background: linear-gradient(to right, #e25330, #3157aa); /* Gradient background */
+}
 

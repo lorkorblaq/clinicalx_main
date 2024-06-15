@@ -20,6 +20,10 @@ data=""
 def home():
     return render_template("index.html")
 
+@views.route("/landing",  strict_slashes=False)
+def landing():
+    return render_template("/templates_for_landingpage/landingpage.html")
+
 @views.route("/dashboard",  strict_slashes=False)
 @auth_required
 def dashboard():

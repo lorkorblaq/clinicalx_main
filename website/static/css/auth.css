@@ -5,8 +5,7 @@
 }
 
 body {
-  background: #fdad5c;
-}
+  background: linear-gradient(to right, #4facfe, #ff7e5f)}
 
 .container{
   position:absolute;
@@ -86,7 +85,7 @@ button.fb {
   transition:all 0.3s linear;
 }
 button.fb:hover {
-  background: #fff;
+  background: #F88066;
   color: #3b5998;
 }
 
@@ -127,7 +126,7 @@ button.form-btn.sx.back:hover {
 button.form-btn.dx {
   right: 0;
   border-radius: 0 0 5px 0;
-  background-color: #ff7d00;
+  background-color: #53ABFB;
   color: #fff;
 }
 
@@ -156,7 +155,7 @@ input {
 }
 
 ::-moz-placeholder {
-   color: #ffc185;  
+   color: #816842;  
   font-family: 'Roboto';
   font-weight:100;
 }
@@ -267,5 +266,16 @@ input {
     z-index:2;
     transform: perspective(100px) translate3d(0px, 0px, 0px);
     opacity: 1;
+  }
+  
+}
+
+@media (max-width: 768px) {
+  body {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    max-width: none;
   }
 }
