@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(function() {
     // nav buttons 
     $('.nav-link').on('click', function() {
         // Remove 'active' class from all links
@@ -28,17 +28,14 @@ $(document).ready(function() {
 
     // date picker 
     $('.datePicker').datepicker({
-        format: 'yyyy/mm/dd',
-        autoclose: true,
-        todayHighlight: true
+        dateFormat: 'yy/mm/dd', // Year first format
     });
-
     // time picker
     var currentTime = new Date();
     var currentHours = currentTime.getHours();
     var currentMinutes = currentTime.getMinutes();
     var formattedTime = currentHours + ':' + (currentMinutes < 10 ? '0' + currentMinutes : currentMinutes);
-     $('#timepicker').timepicker({
+     $('#timepicker-machine').timepicker({
         timeFormat: 'HH:mm p',   // 24-hour format with AM/PM
         interval: 1,            // 30-minute increments
         minTime: '00:00am',      // Earliest time 10:00 AM
@@ -58,7 +55,7 @@ $(document).ready(function() {
 
 
 
-
+    // modal logic
     var modal = $('#myModal');
 
     // When the user clicks the button, open the modal
@@ -95,32 +92,36 @@ $(document).ready(function() {
         $('.modal-content').first().show();
     });
     
-    var $tagContainer = $('#tag-container');
-    var $tagInput = $('#tags');
+    // tags & tagger for modals
+    handleTagInput($('#QCtags'), $('#qcTagger'));
+    handleTagInput($('#OperationsTags'), $('#operationsTagger'));
 
-    $tagInput.on('keydown', function(event) {
-        if (event.key === ',' || event.key === 'Enter') {
-            event.preventDefault();
-            var tagText = $tagInput.val().trim();
-            if (tagText) {
-                createTag(tagText);
-                $tagInput.val('');
+    //tag handler 
+    function handleTagInput($input, tagContainer) {
+        $input.on('keydown', function(event) {
+            if (event.key === ',' || event.key === 'Enter') {
+                event.preventDefault();
+                var tagText = $input.val().trim();
+                if (tagText) {
+                    createTag(tagText, tagContainer);
+                    $input.val('');
+                }
             }
-        }
-    });
+        });
+    }
 
-    function createTag(tagText) {
+    // tag creator
+    function createTag(tagText, tagContainer) {
         var $tag = $('<div class="tag"></div>');
         var $tagContent = $('<span></span>').text(tagText);
         var $tagClose = $('<span class="close">&times;</span>').on('click', function() {
             $tag.remove();
         });
-
         $tag.append($tagContent).append($tagClose);
-        $tagContainer.append($tag);
+        tagContainer.append($tag);
     }
 
-
+    // maintainance tab on the page
     $('#maintenance-tab').on('click', function() {
         $('#maintenance-content').show();
         $('#downtimes-content').hide();
@@ -129,7 +130,7 @@ $(document).ready(function() {
         $('#downtimes-tab').removeClass('active');
         $('#troubleshooting-tab').removeClass('active');
     });
-    
+    // downtimes tab on the page
     $('#downtimes-tab').on('click', function() {
         $('#maintenance-content').hide();
         $('#downtimes-content').show();
@@ -138,7 +139,7 @@ $(document).ready(function() {
         $('#maintenance-tab').removeClass('active');
         $('#troubleshooting-tab').removeClass('active');
     });
-    
+    // troubleshooting tab on the page
     $('#troubleshooting-tab').on('click', function() {
         $('#maintenance-content').hide();
         $('#downtimes-content').hide();
@@ -148,22 +149,13 @@ $(document).ready(function() {
         $('#downtimes-tab').removeClass('active');
     });
 
-
-
-
-
-
-
-
-
-
-
+    // tag logic for machine modal
     $('.option-button').on('click', function(event) {
         event.preventDefault(); // Prevent the default form submission
         const value = $(this).data('value');
         const tag = $('<span class="tag">' + value + '<span class="remove-tag">&times;</span></span>');
         
-        $('.tag-container').append(tag);
+        $('#frequencyTagger').append(tag);
  
         // Remove the tag when the remove icon is clicked
         tag.find('.remove-tag').on('click', function() {
@@ -172,35 +164,177 @@ $(document).ready(function() {
             });
         });
 
-    }); 
-    $('.textarea').on('keypress', function(event) {
-        if (event.which === 13) { // Enter key
-            event.preventDefault();
-            const value = $(this).val();
-            if (value) {
-                const tag = $('<span class="tag">' + value + '<span class="remove-tag">&times;</span></span>');
-                $(this).val('');
-                $('.tag-container').append(tag);
-                tag.hide().fadeIn(300);
-
-                tag.find('.remove-tag').on('click', function() {
-                    $(this).parent().fadeOut(300, function() {
-                        $(this).remove();
-                    });
-                });
-            }
-        }
     });
 
 
-
-
-
-    // todo js
+    // logic for the to-do modal
     const $todoInput = $('#new-todo');
     const $addTodoButton = $('#add-todo');
     const $todoList = $('#todo-list');
 
+
+    //QC submit button
+    $('#submit-qc').on('click', function(event) {
+        event.preventDefault(); // Prevent default form submission behavior
+        const qcData = [];
+        const datePickerValue = $('#datePicker-qc').val();
+        if (datePickerValue !== '') {
+            qcData.push(datePickerValue);
+        } else {
+            alert('Please select a date');
+        }
+        machine = $('#machineIndicatorQC').val();
+        qcData.push(machine);
+        $('#qcTagger .tag span').each(function() {
+            qcData.push($(this).text());
+        });
+        var RCQC = $('#RCQC').val();
+        qcData.push(RCQC);
+        var CAQC = $('#CAQC').val();
+        qcData.push(CAQC);
+        const filteredQC = qcData.filter(item => item !== '×');
+        console.log(filteredQC)
+    });
+
+    // machine submit button
+    $('#submit-machine').on('click', function(event) {
+        event.preventDefault(); // Prevent default form submission behavior
+        const machineData = [];
+        const machineMaintainceData = [];
+        const machineDowntimeData = [];
+        const machineTroubleshootingData = [];
+
+        var category = [];
+
+        var datePickerValue = $('#datePicker-machine').val();
+        if (datePickerValue !== '') {
+            machineData.push(datePickerValue);
+        } else {
+            alert('Please select a date');
+        }
+        var time = $('#timepicker-machine').val();
+        machineData.push(time);
+
+        var machine = $('#machineIndicator').val();
+        if (machine !== '') {
+            machineData.push(machine);
+        } else {
+            alert('Please select a machine');
+        }
+        var activeMenuItem = $('.menu-item.active');
+        var activeMenuItemText = activeMenuItem.text();
+        machineData.push(activeMenuItemText);
+
+        var activeMenuId = activeMenuItem.attr('id');
+        console.log(activeMenuId);
+        switch (activeMenuId) {
+            case 'maintenance-tab':
+                handleMaintenanceFormSubmission();
+                break;
+            case 'downtimes-tab':
+                handleDowntimesFormSubmission();
+                break;
+            case 'troubleshooting-tab':
+                handleTroubleshootingFormSubmission();
+                break;
+            default:
+                console.log('No active content found');
+        }
+        function handleMaintenanceFormSubmission() {
+            $('#frequencyTagger .tag').each(function() {
+                category.push($(this).text());
+            });
+            machineMaintainceData.push(category);
+            var comments = $('#commentsMaint').val();
+            machineData.push(machineMaintainceData);
+            machineData.push(comments);
+            console.log(machineData);
+
+        };
+        function handleDowntimesFormSubmission() {
+            var resolved = $('#downtimes-content input[type="checkbox"]').prop('checked');
+            machineData.push(resolved);
+            var RCdowntime = $('#RCdowntime').val();
+            machineData.push(RCdowntime);
+            var CAdowntime = $('#CAdowntime').val();
+            machineData.push(CAdowntime);
+            // machineData.push(machineDowntimeData);
+            console.log(machineData);
+        };
+        function handleTroubleshootingFormSubmission() {
+            var resolved = $('#troubleshooting-content input[type="checkbox"]').prop('checked');
+            machineData.push(resolved);
+            var RCtroubleshooting = $('#RCtroubleshooting').val();
+            machineData.push(RCtroubleshooting);
+            var CAtroubleshooting = $('#CAtroubleshooting').val();
+            machineData.push(CAtroubleshooting);
+            console.log(machineData);
+
+        };
+
+    });
+
+    //operations submit button 
+    $('#submit-operations').on('click', function(event) {
+        event.preventDefault(); // Prevent default form submission behavior
+        const datePickerValue = $('#datePicker-operations').val();
+        const operationsData = [];
+        if (datePickerValue !== '') {
+            operationsData.push(datePickerValue);
+        } else {
+            alert('Please select a date');
+        }
+        $('#operationsTagger .tag span').each(function() {
+            operationsData.push($(this).text());
+        });
+        OPearationsActioning =   $('#CAoperations').val();
+        operationsData.push(OPearationsActioning);
+        const filteredOperations = operationsData.filter(item => item !== '×');
+        console.log(filteredOperations);
+    });
+
+    // to-do submit button
+    $('#submit-todo').on('click', function(event) {
+        event.preventDefault(); // Prevent default form submission behavior
+        const todoText = $todoInput.val().trim();
+        const allTodos = [];
+        const datePickerValue = $('#datePicker-todo').val();
+        if (datePickerValue !== '') {
+            allTodos.push(datePickerValue);
+        } else {
+            alert('Please select a date');
+        }
+        // Add the new todo if it's not empty
+        if (todoText !== '') {
+            allTodos.push(todoText);
+        }
+        // Collect all existing todos from the list
+        $todoList.find('li span').each(function() {
+            allTodos.push($(this).text());
+        });
+
+        console.log(allTodos);
+        postSubmitsToApi()
+    });
+
+    // Function to post data to an API
+    function postSubmitsToApi(url, data) {
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+            success: function(response) {
+                console.log('Data successfully posted:', response);
+            },
+            error: function(error) {
+                console.error('Error posting data:', error);
+            }
+        });
+    }
+
+
+    // Add todo on button click
     $addTodoButton.on('click', function(event) {
         event.preventDefault(); // Prevent default form submission behavior
         addTodo();
@@ -212,7 +346,7 @@ $(document).ready(function() {
             addTodo();
         }
     });
-
+    // adding todo function
     function addTodo() {
         const todoText = $todoInput.val().trim();
         if (todoText === '') return;
@@ -227,7 +361,7 @@ $(document).ready(function() {
         $todoList.append($li);
         $todoInput.val('');
     }
-
+    // edit and delete todo
     window.editTodoItem = function(button) {
         const $todoItem = $(button).parent().prev();
         const newText = prompt('Edit your task', $todoItem.text());
@@ -239,11 +373,7 @@ $(document).ready(function() {
     window.deleteTodoItem = function(button) {
         $(button).closest('li').remove();
     };
-
-
-
     // to do card display
-    // / Add sortable functionality
     // Make the lists sortable and connect them
     $('.sortable').sortable({
         connectWith: '.sortable',
@@ -285,34 +415,7 @@ $(document).ready(function() {
             item.data('previousParent', ui.sender);
         }
     }).disableSelection();
-    
-    // Add item to checklist QC
-    $('#add-item-QC').on('click', function() {
-        const newItem = $(`
-            <li class="list-group-item checklist-item">
-                <span>New Task</span>
-                <div class="checklist-actions">
-                    <button class="btn btn-sm btn-warning edit-btn">✏️</button>
-                    <button class="btn btn-sm btn-danger delete-btn">🗑️</button>
-                </div>
-            </li>
-        `);
-        $('#checklistQC').append(newItem);
-    });
-    
-    // Add item to checklist Machine
-    $('#add-item-Machine').on('click', function() {
-        const newItem = $(`
-            <li class="list-group-item checklist-item">
-                <span>New Task</span>
-                <div class="checklist-actions">
-                    <button class="btn btn-sm btn-warning edit-btn">✏️</button>
-                    <button class="btn btn-sm btn-danger delete-btn">🗑️</button>
-                </div>
-            </li>
-        `);
-        $('#checklistMachine').append(newItem);
-    });
+        
     
     // Edit item in checklist
     $(document).on('click', '.edit-btn', function() {

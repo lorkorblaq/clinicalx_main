@@ -56,22 +56,22 @@
                 <button id="closebtn" class="close">Close</button>
             </div>
 
-            <!-- Additional Modal Content for Tool 1 -->
+            <!-- Additional Modal Content for QC -->
             <div id="additionalContent1" class="modal-content" style="display:none;">
                 <span class="close">&times;</span>
                 <h2>Quality Control</h2>
                 <form>
                     <label for="datePicker">Date:</label>
-                    <input type="text" class="form-control datePicker" id="" placeholder="Select date">
+                    <input type="text" class="form-control datePicker" id="datePicker-qc" placeholder="Select date">
 
                     <label for="qualityIndicator">Machine:</label>
-                    <select id="qualityIndicator" name="qualityIndicator">
-                        <option value="indicator1">Indicator 1</option>
-                        <option value="indicator2">Indicator 2</option>
+                    <select class="form-control" id="machineIndicatorQC">
+                        <option value="indicator1">Abbott</option>
+                        <option value="indicator2">DXI</option>
                     </select><br>
 
-                    <div id="tag-container">
-                        <input type="text" id="tags" name="tags" placeholder="Enter affected item(s) separated by commas">
+                    <div id="qcTagger">
+                        <input type="text" id="QCtags"  placeholder="Enter affected item(s) separated by commas">
                     </div><br>
 
                     <div class="content" id="qc-content">
@@ -79,23 +79,30 @@
                         <textarea class="form-control mt-2" id="CAQC" placeholder="Corrective action" aria-label="Corrective action"></textarea>
                     </div>
 
-                    <button type="submit">Submit</button>
+                    <button type="submit" id="submit-qc">Submit</button>
                     <button type="button" class="back">Back</button>
                 </form>
             </div>
 
-            <!-- Additional Modal Content for Tool 2 -->
+            <!-- Additional Modal Content for Machines-->
             <div id="additionalContent2" class="modal-content" style="display:none;">
                 <span class="close">&times;</span>
                 <h2>Machine History</h2>
                 <form>
-                    <input type="text" class="form-control datePicker" id="" placeholder="Select date">                  
-                    <input type="text" class="mt-2" id="timepicker">
+                    <input type="text" class="form-control datePicker" id="datePicker-machine" placeholder="Select date">                  
+                    <input type="text" class="mt-2 form-control" id="timepicker-machine">
 
-                    <label for="machineIndicator">Machine(s):</label>
-                    <select id="machineIndicator" name="machineIndicator">
-                        <option value="indicator1">Indicator 1</option>
-                        <option value="indicator2">Indicator 2</option>
+                    <!-- <label for="machineIndicator">Machine(s):</label> -->
+                    <select id="machineIndicator" class="form-control" name="machineIndicator">
+                        <option value="" disabled selected>Select a machine...</option>
+                        <option value="Abboti1000">Abboti1000</option>
+                        <option value="Beckman Au680">Beckman Au680</option>
+                        <option value="Beckman DXC700">Beckman DXC700</option>
+                        <option value="Beckman DXI800">Beckman DXI800</option>
+                        <option value="Beckman DXI800">Beckman XN550</option>
+                        <option value="Beckman DXI800">Beckman XN31</option>
+                        <option value="Beckman DXI800">FUJI</option>
+
                     </select>
             
                     <div class="menu">
@@ -112,10 +119,8 @@
                             <button class="option-button" data-value="Quarterly">Quarterly</button>
                             <button class="option-button" data-value="Annually">Annually</button>
                         </div>
-                        <div class="tag-container">
-                            <label><input type="checkbox" class="option-checkbox" data-value="Option 1"> Done</label><br>
-                            <input type="text" class="textarea">
-                            <br>
+                        <div id="frequencyTagger">
+                            <input type="text" class="textarea"><br>
                             <textarea class="form-control" id="commentsMaint" placeholder="Comments..." aria-label="comments"></textarea>
                         </div>
                         <!-- <textarea class="form-control tag-container" id="maintenance" placeholder="Maintenance Done" aria-label="Maintenance"></textarea> -->
@@ -123,54 +128,56 @@
                     
             
                     <div class="content" id="downtimes-content" style="display:none;">
-                        <textarea class="form-control" id="RCdowntimes" placeholder="Root Cause" aria-label="Root Cause"></textarea>
-                        <textarea class="form-control mt-2" id="CAdowntimes" placeholder="Corrective action" aria-label="Corrective action"></textarea>
+                        <label><input type="checkbox" class="option-checkbox" data-value="resolved"> Resolved</label><br>
+                        <textarea class="form-control" id="RCdowntime" placeholder="Root Cause" aria-label="Root Cause"></textarea>
+                        <textarea class="form-control mt-2" id="CAdowntime" placeholder="Corrective action" aria-label="Corrective action"></textarea>
                     </div>
             
                     <div class="content" id="troubleshooting-content" style="display:none;">
+                        <label><input type="checkbox" class="option-checkbox" data-value="resolved"> Resolved</label><br>
                         <textarea class="form-control" id="RCtroubleshooting" placeholder="Root Cause" aria-label="Root Cause"></textarea>
                         <textarea class="form-control mt-2" id="CAtroubleshooting" placeholder="Corrective action" aria-label="Corrective action"></textarea>                    </div>
-                    <button type="submit">Submit</button>
+                    <button type="submit" id="submit-machine">Submit</button>
                     <button type="button" class="back">Back</button>
                 </form>
             </div>
 
+            <!-- Additional Modal Content for Operations-->
             <div id="additionalContent3" class="modal-content" style="display:none;">
                 <span class="close">&times;</span>
                 <h2>Operations</h2>
                 <form>
                     <label for="datePicker">Date:</label>
-                    <input type="text" class="form-control datePicker" id="" placeholder="Select date">
-                    <div class="mt-3" id="tag-container">
-                        <input type="text" id="tags" name="tags" placeholder="Occurence(s) separated by comma...">
+                    <input type="text" class="form-control datePicker" id="datePicker-operations" placeholder="Select date">
+                    <div class="mt-3" id="operationsTagger">
+                        <input type="text" class="form-control" id="OperationsTags" placeholder="Occurence(s) separated by comma...">
+                    </div><br>
+                    <div class="content" id="operation-content">
+                        <textarea class="form-control mt-2" id="CAoperations" placeholder="Actionings..." aria-label="Corrective action"></textarea>
                     </div>
-                    <br>
-                    <div class="content" id="qc-content">
-                        <textarea class="form-control mt-2" id="CAQC" placeholder="Actionings..." aria-label="Corrective action"></textarea>
-                    </div>
-                    <button type="submit">Submit</button>
+                    <button type="submit" id="submit-operations">Submit</button>
                     <button type="button" class="back">Back</button>
                 </form>
             </div>
 
+            <!-- Personale task -->
             <div id="additionalContent4" class="modal-content" style="display:none;">
                 <span class="close">&times;</span>
                 <h2>Personal Tasks</h2>
                 <form>
-                    <label for="datePicker">Date:</label>
-                    <input type="text" class="form-control datePicker" id="" placeholder="Select date">
+                    <input type="text" class="form-control datePicker" id="datePicker-todo" placeholder="Select date">
                     
                     <div class="todo-container">
                         <h6>Breaking things down so you don't break down</h6>
                         <div class="todo-input-container">
-                            <input type="text" id="new-todo" placeholder="Add new item...">
+                            <input type="text" class="form-control" id="new-todo" placeholder="Add new item...">
                             <button id="add-todo">+</button>
                         </div>
                         <ul id="todo-list">
                             <!-- To-do items will be added here -->
                         </ul>
                     </div>
-                    <button type="submit">Submit</button>
+                    <button type="submit" id="submit-todo">Submit</button>
                     <button type="button" class="back">Back</button>
                 </form>
             </div>
@@ -242,7 +249,7 @@
                     2021-09-01
                 </div>
                 <div class="card-body">
-                    <ul id="checklistQC" class="list-group sortable">
+                    <ul id="checklistTodo" class="list-group sortable">
                         <li class="list-group-item checklist-item">
                             <span>Task 1</span>
                             <div class="checklist-actions">
@@ -266,7 +273,7 @@
                     2021-09-01
                 </div>
                 <div class="card-body">
-                    <ul id="checklistMachine" class="list-group sortable">
+                    <ul id="checklist" class="list-group sortable">
                         <li class="list-group-item checklist-item">
                             <span>Task 1</span>
                             <div class="checklist-actions">

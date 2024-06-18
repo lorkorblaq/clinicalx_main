@@ -110,7 +110,7 @@
 
 button {
     padding: 10px 10px;
-    color: white;
+    color: #343A40;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -120,7 +120,7 @@ button:hover {
     background-color: #7CAEDA;
 }
 
-#tag-container {
+#qcTagger {
     display: flex;
     flex-wrap: wrap;
     padding: 5px;
@@ -128,7 +128,7 @@ button:hover {
     border-radius: 5px;
 }
 
-#tag-container input {
+#qcTagger input {
     border: none;
     outline: none;
     flex: 1;
@@ -217,7 +217,7 @@ button:hover {
 
 
 /* #maintainance */
-.tag-container {
+#machineTagger {
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 5px;
