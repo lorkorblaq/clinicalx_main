@@ -590,9 +590,15 @@ $(function() {
         };
     
         if (eventData.event_type === 'qc' || eventData.event_type === 'operations') {
-            formattedEventDate = new Date(eventData.date).toLocaleString('en-US', { ...options, timeZone: 'GMT' });
+            formattedEventDate = new Date(eventData.date).toLocaleDateString('en-US', {
+                year: 'numeric', month: 'short', day: 'numeric'
+            });
         } else if (eventData.event_type === 'machine') {
-            formattedEventDate = new Date(eventData.datetime).toLocaleString('en-US', { ...options, timeZone: 'GMT' });
+            formattedEventDate = new Date(eventData.datetime).toLocaleString('en-US', {
+                year: 'numeric', month: 'short', day: 'numeric',
+                hour: 'numeric', minute: 'numeric', second: 'numeric',
+                hour12: false
+            });
         }
     
         cardHeader.text(`${formattedEventDate} - ${eventData.user}`);
@@ -675,15 +681,23 @@ $(function() {
     function displayEventCards(events) {
         const eventContainer = $('.eventContainer');
         eventContainer.empty(); // Clear existing cards
-
-        // Sort events array in descending order based on date and time
-        events.sort((a, b) => new Date(b.datetime) - new Date(a.datetime));
-
+    
+        // Sort events array in ascending order based on date and time
+        events.sort((a, b) => {
+            // Convert dates to Date objects
+            const dateA = new Date(a.datetime || a.date); // Use datetime if available, otherwise use date
+            const dateB = new Date(b.datetime || b.date);
+    
+            // Sort in descending order (latest date/time first)
+            return dateB - dateA;
+        });
+    
         events.forEach(eventData => {
             var card = createCard(eventData);
             eventContainer.append(card); // Append card to display in ascending order
         });
     }
+    
 
 
 
