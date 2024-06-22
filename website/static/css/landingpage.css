@@ -1,0 +1,331 @@
+body, html {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden; /* Prevents horizontal scroll */
+    background: linear-gradient(to right, #e25330, #3157aa); /* Gradient background */
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    /* background: linear-gradient(to right, #4facfe, #ff7e5f); */
+    background-color: #DF5332;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    height: 40px;
+    margin: 0;
+}
+body footer {
+    background-color: #3B57A3;
+}
+h1, h2, p {
+    color: white;
+}
+
+h3 {
+    color: #CCCCCC;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: center;
+    width: 100%; /* Ensure the nav container spans the full width */
+    max-width: 100%; /* Optional: Limit the maximum width for better alignment */
+}
+
+.signup_signin {
+    background-color: #F98064;
+    border-radius: 9px;
+    padding: 7px;
+    color: white;
+    align-content: center;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.bar {
+    height: 3px;
+    width: 25px;
+    background-color: white;
+    margin: 4px 0;
+    transition: 0.3s;
+}
+
+.nav-menu {
+    display: flex;
+}
+
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav-links li {
+    margin: 13px;
+}
+/* .nav-links ul {
+    margin: 0px;
+    padding: 0px;
+} */
+
+.nav-links a {
+    color: #CCCCCC;
+    text-decoration: none;
+}
+
+.hero {
+    padding: 0;
+    margin: 0;
+    background-image: url('../images/hero-tag.jpg'); /* Update with your image path */
+    background-position: center;
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    height: 480px; /* Full height of the viewport */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    border-bottom: #282c34;
+    border: #007BFF;
+    border-width: 10;
+}
+
+.hero h1 {
+    font-size: 2.5em;
+}
+
+.hero-btn  {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Align items to the center */
+    padding: 10px;
+    color: white;
+    background: linear-gradient(to right, #e25330, #3157aa); /* Gradient background */
+    border: #007BFF 1px solid;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+}
+
+.hero-btn:hover {
+    background: linear-gradient(to right, #3157aa, #e25330); /* Gradient background */
+
+}
+
+.lab {
+    color: #7B3787;
+}
+
+.btn {
+    background: #61dafb;
+    color: black;
+    padding: 7px;
+    text-decoration: none;
+    border-radius: 50px;
+    cursor: pointer;
+    display: inline-block; /* Ensures the button behaves like an inline-block element */
+}
+
+.btn:hover {
+    background: #BED0DE;
+}
+
+section {
+    padding: 50px 0;
+    text-align: center;
+}
+
+#features {
+    padding-top: 70px;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+.features-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 0 20px; /* Add some padding to prevent elements from touching the edges */
+}
+
+.feature-item {
+    background: #975564;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 25px;
+    width: calc(35% - 20px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.feature-item img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 15px;
+}
+
+.feature-item h3 {
+    margin-top: 0;
+}
+
+.feature-item p {
+    margin-bottom: 10px;
+}
+
+.feature-item a {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.feature-item a:hover {
+    text-decoration: underline;
+}
+
+.pricing-container, .testimonials-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.pricing-plan, .testimonial {
+    border: #007BFF 1px solid;
+    padding: 20px;
+    border-radius: 5px;
+    width: 30%;
+}
+
+.pricing-plan {
+    border-radius: 30px;
+    background-image: url('../images/payment.svg'); /* Update with your image path */
+    /* background-position: contain; */
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: sticky;
+    color: black;
+}
+
+
+
+footer {
+    background: #282c34;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.contact form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.contact input, .contact textarea {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.contact .btn {
+    background: #61dafb;
+    color: black;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.video-container {
+    text-align: center;
+    padding: 50px 0;
+}
+
+.video-container h2 {
+    margin-bottom: 20px;
+}
+
+.video-container iframe {
+    width: 80%;
+    max-width: 560px;
+    height: 315px;
+    border: none;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 1200px) {
+    .feature-item, .pricing-plan, .testimonial {
+        width: 50%; /* Adjust width for medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2em;
+    }
+
+    .feature-item, .pricing-plan, .testimonial {
+        width: 100%; /* Full width for small screens */
+    }
+
+    .contact form {
+        width: 80%; /* Adjust form width for small screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #4facfe;
+        position: absolute;
+        top: 40px;
+        left: 0;
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-links li {
+        text-align: center;
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .hero h1 {
+        font-size: 1.5em;
+    }
+
+    .btn {
+        padding: 10px 15px; /* Adjust button padding for small screens */
+    }
+}

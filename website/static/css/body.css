@@ -10,7 +10,7 @@ body {
     background-size: 100% 100%;  /* Cover the entire background */
     background-repeat: no-repeat; /* Do not repeat the background image */
     background-position: center down; /* Center the background image */
-    background-attachment: fixed; 
+    /* background-attachment: fixed;  */
 }
 
 h1 {
@@ -18,7 +18,7 @@ h1 {
 
 }
 .bodyof {
-    width: 10%;
+    width: 0%;
     margin-left: 50px
 }
 

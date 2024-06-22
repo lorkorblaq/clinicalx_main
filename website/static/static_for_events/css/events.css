@@ -59,14 +59,23 @@
 }
 
 .close {
-    color: red;
+    color: #e25330;
     float: center;
     font-weight: bold;
 }
-#closebtn{
-    background-color: #b31e1e;
+#closebtn {
+    background-color: #e25330;
     color: #ccc;
+    padding: 5px 10px;
 }
+.back {
+    background-color: #e25330;
+}
+
+.back:hover {
+    background-color: #f44336;
+}   
+
 .close:hover,
 .close:focus {
     color: black;
@@ -142,6 +151,7 @@ button:hover {
     border-radius: 5px;
     padding: 5px;
     margin: 2px;
+    color: #1F2327;
 }
 
 .tag span {
@@ -333,6 +343,73 @@ ul#todo-list li .todo-actions button {
 .checklist-item button {
     margin-left: 5px;
 }
+.card-header {
+    background: linear-gradient(to right, #e25330, #3157aa); /* Gradient background */
+}
 
 
+
+
+
+
+
+
+
+
+
+/* card */
+/* CSS for Event Cards */
+.card {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: #f0f0f0;
+    padding: 8px 12px;
+    border-bottom: 1px solid #ddd;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    font-weight: bold;
+}
+
+.card-body {
+    padding: 12px;
+}
+
+.card-body p {
+    margin-bottom: 5px;
+    border-bottom: 1px solid #ddd; /* Add bottom border to each paragraph */
+    padding-bottom: 5px; /* Optional: Add padding to separate items visually */
+    text-align: left; /* Align text to the left */
+}
+
+.card-body p:last-child {
+    margin-bottom: 0;
+    border-bottom: none; /* Remove bottom border from the last paragraph */
+}
+
+
+
+.eventContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Space between cards */
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 calc(33.333% - 10px); /* 3 cards per row with space between */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.card h2, .card p {
+    margin: 5px 0;
+}
 

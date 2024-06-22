@@ -11,10 +11,10 @@
             <h1>Events</h1>
             <nav class="nav nav-borders mt-3">
                 <button class="" id="createButton">Create Event</button>
-                <a class="nav-link" id="sec-btn" data-target="#QCEvents">Q.Control Events</a>
-                <a class="nav-link" id="not-btn" data-target="#machineEvents">Machine Events</a>
-                <a class="nav-link" id="data-btn" data-target="#operationEvents">Operations Events</a>
-                <a class="nav-link" id="bill-btn" data-target="#to-doEvents">To-Do Events</a>
+                <a class="nav-link" id="qc-btn" data-target="#QCEvents">Q.Control Events</a>
+                <a class="nav-link" id="machine-btn" data-target="#machineEvents">Machine Events</a>
+                <a class="nav-link" id="operations-btn" data-target="#operationEvents">Operations Events</a>
+                <a class="nav-link" id="to-do-btn" data-target="#to-doEvents">To-Do Events</a>
             </nav>
         </div>
         <hr>
@@ -66,8 +66,8 @@
 
                     <label for="qualityIndicator">Machine:</label>
                     <select class="form-control" id="machineIndicatorQC">
-                        <option value="indicator1">Abbott</option>
-                        <option value="indicator2">DXI</option>
+                        <option value="Abbott">Abbott</option>
+                        <option value="DXI">DXI</option>
                     </select><br>
 
                     <div id="qcTagger">
@@ -186,63 +186,36 @@
         </div>
         <br>
 
+       
         <div class="events" id="QCEvents">
             <h3>Quality Control Events</h3>
-            <div class="card">
-                <div class="card-header">
-                    2021-09-01
-                </div>
-                <div class="card-body">
-                    <p>Card Content</p>
-                </div>
-            </div>
-            <div class="table-responsive" id ="Ex-operationEvents_table">
-                <table class="table table-bordered table-striped" id="operationEvents_table">
-                    <thead class="head thead-dark">
-                        <tr id="reports_h">
-                        </tr>
-                    </thead>
-                    <tbody id="tbody" class="body" >
-                        <tr id='reports_r'>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="eventContainer" id="QCeventContainer">
+                <!-- Cards will be dynamically added here -->
             </div>
         </div>
-    
+        
         <div class="events" id="machineEvents">
             <h3>Machine Events</h3>
-            <div class="table-responsive" id ="Ex-operationEvents_table">
-                <table class="table table-bordered table-striped" id="operationEvents_table">
-                    <thead class="head thead-dark">
-                        <tr id="reports_h">
-                        </tr>
-                    </thead>
-                    <tbody id="tbody" class="body" >
-                        <tr id='reports_r'>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="eventContainer" id="machineEventContainer">
+                <!-- Cards will be dynamically added here -->
             </div>
         </div>
-    
+        
         <div class="events" id="operationEvents">
             <h3>Operations Events</h3>
-                <div class="table-responsive" id ="Ex-operationEvents_table">
-                    <table class="table table-bordered table-striped" id="operationEvents_table">
-                        <thead class="head thead-dark">
-                            <tr id="reports_h">
-                            </tr>
-                        </thead>
-                        <tbody id="tbody" class="body" >
-                            <tr id='reports_r'>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div class="eventContainer" id="operationEventContainer">
+                <!-- Cards will be dynamically added here -->
+            </div>
         </div>
-    
+        
+        
         <div class="events" id="to-doEvents">
+            <h3>To Do Events</h3>
+            <!-- Placeholder for displaying to-do items -->
+            <div id="todoContainer"></div>
+        </div>
+        
+        <!-- <div class="events" id="to-doEvents">
             <h3>To Do Events</h3>
             <div class="card mb-3">
                 <div class="card-header">
@@ -291,7 +264,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> -->
 
     </main>
 {% endblock %}

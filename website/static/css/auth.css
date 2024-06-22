@@ -130,6 +130,9 @@ button.form-btn.dx {
   color: #fff;
 }
 
+button.form-btn.dx:hover{
+  background-color: #93c9fc;
+}
 input {
   border: none;
   border-bottom: 1px solid #ffc185;
