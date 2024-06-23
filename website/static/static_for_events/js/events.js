@@ -1,6 +1,6 @@
 $(function() {
-    // BaseUrl = "https://labpal.com.ng/api";
-    BaseUrl = "http://127.0.0.1:3000/api";
+    BaseUrl = "https://labpal.com.ng/api";
+    // BaseUrl = "http://127.0.0.1:3000/api";
     function getCookie(name) {
         let cookieArr = document.cookie.split("; ");
         for(let i = 0; i < cookieArr.length; i++) {
@@ -576,29 +576,34 @@ $(function() {
     // Function to create a card dynamically based on event data
     function createCard(eventData) {
         // Construct the card HTML
-        var card = $('<div>').addClass('card');
+        var card = $('<div>').addClass('card').attr('id', eventData.id); // Set ID of the card element to eventData.id
         var cardHeader = $('<div>').addClass('card-header');
     
         // Customize card header based on event type
         var formattedEventDate = '';
-        var options = {
-            year: 'numeric', month: 'short', day: 'numeric',
-            hour: 'numeric', minute: 'numeric', second: 'numeric',
-            hour12: false, // Ensure 24-hour format
-            // timeZone: 'Africa/Lagos', // Adjust to your specific timezone (West Africa Standard Time)
-            timeZoneOffset: -120
-        };
     
         if (eventData.event_type === 'qc' || eventData.event_type === 'operations') {
-            formattedEventDate = new Date(eventData.date).toLocaleString('en-US', { ...options, timeZone: 'GMT' });
+            formattedEventDate = new Date(eventData.date).toLocaleDateString('en-US', {
+                year: 'numeric', month: 'short', day: 'numeric', timeZone: 'GMT'
+            });
         } else if (eventData.event_type === 'machine') {
-            formattedEventDate = new Date(eventData.datetime).toLocaleString('en-US', { ...options, timeZone: 'GMT' });
+            formattedEventDate = new Date(eventData.datetime).toLocaleString('en-US', {
+                year: 'numeric', month: 'short', day: 'numeric',
+                hour: 'numeric', minute: 'numeric', second: 'numeric',
+                hour12: false,
+                timeZone: 'GMT'
+            });
         }
     
         cardHeader.text(`${formattedEventDate} - ${eventData.user}`);
-    
-        var cardBody = $('<div>').addClass('card-body');
-    
+
+
+        var cardBody = $('<div>').addClass('card-body').attr('id', `${eventData.event_id}`);
+        cardHeader.click(function() {
+            console.log('eventData.event_id :', eventData.event_id);
+            $(`#${eventData.event_id}`).slideToggle(); // Toggle only the card-body within this card
+            
+        });
         // Customize card body based on event type
         if (eventData.event_type === 'qc') {
             var itemsTag = eventData.items.join(', '); // Join array elements with ', ' separator
@@ -651,6 +656,7 @@ $(function() {
         return card;
     }
     
+    
     // Example default event type to load initially
 
     // Function to fetch events from API
@@ -675,15 +681,23 @@ $(function() {
     function displayEventCards(events) {
         const eventContainer = $('.eventContainer');
         eventContainer.empty(); // Clear existing cards
-
-        // Sort events array in descending order based on date and time
-        events.sort((a, b) => new Date(b.datetime) - new Date(a.datetime));
-
+    
+        // Sort events array in ascending order based on date and time
+        events.sort((a, b) => {
+            // Convert dates to Date objects
+            const dateA = new Date(a.datetime || a.date); // Use datetime if available, otherwise use date
+            const dateB = new Date(b.datetime || b.date);
+    
+            // Sort in descending order (latest date/time first)
+            return dateB - dateA;
+        });
+    
         events.forEach(eventData => {
             var card = createCard(eventData);
             eventContainer.append(card); // Append card to display in ascending order
         });
     }
+    
 
 
 
