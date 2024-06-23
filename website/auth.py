@@ -1,7 +1,7 @@
 from flask import app, Blueprint, render_template, request, session, url_for, redirect, flash, make_response,jsonify, session
 from werkzeug.security import generate_password_hash, check_password_hash
 from .forms import RegistrationForm, LoginForm, Newpassword
-from .extensions import socketio
+# from .extensions import socketio
 from flask_socketio import send, emit
 from .db_clinicalx import db
 import requests
@@ -12,7 +12,7 @@ from functools import wraps
 from .mailer import welcomeMail
 import logging
 from .celeryMasters.inventoryMaster import watch_inventory_changes
-from .celeryMasters.chatMaster import chat_watcher
+# from .celeryMasters.chatMaster import chat_watcher
 
 # Configure the logging settings
 logging.basicConfig(filename='app.log', level=logging.INFO)
@@ -113,7 +113,7 @@ def signup_signin():
         # Fetch user from MongoDB based on the provided email
         user = USERS_COLLECTION.find_one({'email': email})
         if user is not None and check_password_hash(user['password'], password):
-            watch_inventory_changes.delay()
+            # watch_inventory_changes.delay()
             # chat_watcher.delay()
             identity ={}
             full_id = str(user['_id'])

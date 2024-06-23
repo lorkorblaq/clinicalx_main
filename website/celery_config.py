@@ -1,14 +1,14 @@
 import eventlet
 eventlet.monkey_patch(socket=True)
 from celery import Celery
-from .redis_config import redis_connection
+from .redis_config import redis_client
 # to run celery
 # celery -A celery_config.celery worker --pool=solo --loglevel=info
 # celery -A website.celery_config.celery worker --pool=eventlet --loglevel=info -Q inventory
 # CELERY_BROKER_URL = 'pyamqp://blaq:518Oloko.@localhost:5672//'
 # CELERY_RESULT_BACKEND = 'rpc://'
-CELERY_BROKER_URL = redis_connection
-CELERY_RESULT_BACKEND = redis_connection
+CELERY_BROKER_URL = redis_client
+CELERY_RESULT_BACKEND = redis_client
     
 celery = Celery(
     'main',

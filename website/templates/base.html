@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>LabPal</title>
         <link rel="stylesheet" href="../static/css/body.css">
-        <link rel="icon" type="image/png" href="#">
+        <link rel="shortcut icon" type="image/x-icon" href="../../static/images/labpal_small.ico">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
         <!-- TypeHead CSS -->    
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.css" rel="stylesheet">
@@ -33,51 +33,54 @@
                         <span>Dashboard</span>
                     </a> -->
                     <div class="all">
-                    <a href="/events" id="events" class="list-group-item list-group-item-action bg-dark">
-                        <i class="fas fa-feather-alt"></i>
-                        <span>Events</span>
-                    </a>
-                    <a href="/inventory" id="inventory" class="list-group-item list-group-item-action bg-dark">
-                        <i class="fas fa-warehouse"></i>
-                        <span>Inventory</span>
-                    </a>
-                    <a href="/expiration" id="inventory" class="list-group-item list-group-item-action bg-dark">
-                        <i class="fas fa-calendar-times icon"></i>
-                        <span>Lots & Exp.</span>
-                    </a>
-                    <a href="/in-use" class="list-group-item list-group-item-action bg-dark">
-                        <i class="fas fa-play"></i>
-                        <span>In Use</span>
-                    </a>
-                    <a href="/channels" class="list-group-item list-group-item-action bg-dark"  >
-                        <i class="fas fa-exchange-alt"></i>
-                        <span>Channels</span>
-                    </a>
+                        <a href="" class="logo">
+                            <img src="../static/images/labpal_small.png" alt="">
+                        </a>
+                        <a href="/app/events" id="events" class="list-group-item list-group-item-action bg-dark">
+                            <i class="fas fa-feather-alt"></i>
+                            <span>Events</span>
+                        </a>
+                        <a href="/app/inventory" id="inventory" class="list-group-item list-group-item-action bg-dark">
+                            <i class="fas fa-warehouse"></i>
+                            <span>Inventory</span>
+                        </a>
+                        <a href="/app/expiration" id="inventory" class="list-group-item list-group-item-action bg-dark">
+                            <i class="fas fa-calendar-times icon"></i>
+                            <span>Lots & Exp.</span>
+                        </a>
+                        <a href="/app/in-use" class="list-group-item list-group-item-action bg-dark">
+                            <i class="fas fa-play"></i>
+                            <span>In Use</span>
+                        </a>
+                        <a href="/app/channels" class="list-group-item list-group-item-action bg-dark"  >
+                            <i class="fas fa-exchange-alt"></i>
+                            <span>Channels</span>
+                        </a>
 
-                    <!-- <a href="/chat" class="list-group-item list-group-item-action bg-dark">
-                        <i class="fas fa-users icon"></i>
-                        <span>Team</span>
-                    </a> -->
+                        <!-- <a href="/chat" class="list-group-item list-group-item-action bg-dark">
+                            <i class="fas fa-users icon"></i>
+                            <span>Team</span>
+                        </a> -->
 
-                    <a href="/gpt" class="list-group-item list-group-item-action bg-dark">
-                        <i class="fas fa-robot"></i>
-                        <span>Labpal</span>
-                    </a> 
+                        <a href="/app/gpt" class="list-group-item list-group-item-action bg-dark">
+                            <i class="fas fa-robot"></i>
+                            <span>Labpal</span>
+                        </a> 
                     </div>
 
                     <div class="su">
-                    <a href="/user-profile" class="list-group-item list-group-item-action bg-dark">
-                        <i class="fas fa-user icon"></i>
-                        <span>Profile</span>
-                    </a>
-                    <a href="/settings" class="list-group-item list-group-item-action bg-dark">
-                        <i class="fas fa-cog"></i>
-                        <span>Settings</span>
-                    </a>
-                    <a href="{{url_for('auth.logout')}}"class="list-group-item list-group-item-action bg-dark">
-                        <i class="fas fa-door-open"></i>
-                        <span>Log out</span>
-                    </a>
+                        <a href="/app/user-profile" class="list-group-item list-group-item-action bg-dark">
+                            <i class="fas fa-user icon"></i>
+                            <span>Profile</span>
+                        </a>
+                        <a href="/app/settings" class="list-group-item list-group-item-action bg-dark">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                        <a href="{{url_for('auth.logout')}}"class="list-group-item list-group-item-action bg-dark">
+                            <i class="fas fa-door-open"></i>
+                            <span>Log out</span>
+                        </a>
                     </div>
                 <!-- </div> -->
             </div>

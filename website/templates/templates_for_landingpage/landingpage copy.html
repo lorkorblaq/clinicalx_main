@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LabPal</title>
+    <link rel="stylesheet" href="../../static/css/landingpage.css">
+    <link rel="shortcut icon" type="image/x-icon" href="../../static/images/labpal_small.ico">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <button class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <nav class="nav-menu" id="nav-menu">
+                <a href="https://labpal.com.ng" class="logo">
+                    <img src="../../static/images/labpal_big.png" alt="LabPal">
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <ul class="nav-links">
+                    <a href="{{ url_for('auth.auth_page') }}" class="signup_signin">Sign Up/In</a>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="hero"></section>
+            <a href="{{ url_for('views.home') }}" class="hero-btn">Get Started</a>
+        </section>
+
+
+        <section id="features">
+            <h1>Features</h1>
+            <div class="features-container">
+                <div class="feature-item">
+                    <img src="../../static/images/events.svg" alt="Feature One Image">
+                    <h3>Event recording and documenting</h3>
+                    <p>Amaze customers, support your team and transform your business with our event recording feature.</p>
+                    <a href="#">Explore features</a>
+
+                </div>
+                <div class="feature-item">
+                    <img src="../../static/images/messgaing.svg" alt="Feature Four Image">
+                    <h3>Messaging</h3>
+                    <p>Stay connected with our built-in messaging feature, enhancing communication within your team.</p>
+                    <a href="#">Explore features</a>
+                    <p style="color: rgb(51, 14, 14);">Still n progress...</p>
+                </div>
+                <div class="feature-item">
+                    <img src="../../static/images/inventory.svg" alt="Feature Two Image">
+                    <h3>Inventory management</h3>
+                    <p>Meet our inventory management system, designed to keep track of all your resources efficiently.</p>
+                    <a href="#">Explore features</a>
+                </div>
+                <div class="feature-item">
+                    <img src="../../static/images/a.i.svg" alt="Feature Three Image">
+                    <h3>A.I Laboratory assistant</h3>
+                    <p>Our AI laboratory assistant helps you conduct experiments with precision and accuracy.</p>
+                    <a href="#">Explore features</a>
+                    <p style="color: rgb(51, 14, 14);">Still n progress...</p>
+
+                </div>
+                
+            </div>
+            <div class="video-container">
+                <h3>Watch Our Introduction Video</h3>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </section>
+     
+        <!-- <section id="pricing">
+            <h1>Pricing</h1>
+            <div class="pricing-container">
+                <div class="pricing-plan">
+                    <h3>Basic</h3>
+                    <p>₦3500/month</p>
+                    <a href="#signup" class="btn">Choose Plan</a>
+                </div>
+                <div class="pricing-plan">
+                    <h3>Pro</h3>
+                    <p>₦5000/month</p>
+                    <a href="#signup" class="btn">Choose Plan</a>
+                </div>
+            </div>
+        </section> -->
+ 
+    <!-- <section id="testimonials">
+        <h3>Testimonials</h3>
+        <div class="testimonials-container">
+            <div class="testimonial">
+                <p>"This app changed my life!" - Happy Customer</p>
+            </div>
+            <div class="testimonial">
+                <p>"A must-have tool for professionals." - Satisfied User</p>
+            </div>
+            
+        </div>
+    </section> -->
+    
+        <!-- <section class="contact" id="contact">
+            <h1>Contact Sales</h1>
+            <form>
+                <input type="email" placeholder="Your Email">
+                <textarea placeholder="Your Message"></textarea>
+                <button type="submit" class="btn">Send</button>
+            </form>
+        </section> -->
+        
+    </main>
+    <footer>
+        <section>
+            <img src="" alt="">
+            <p>&copy; 2024 LabPal.</p>
+            <p>All rights reserved.</p>
+        </section>
+
+        <script src="../../static/js/landingpage.js"></script>
+    </footer>
+
+</body>
+</html>

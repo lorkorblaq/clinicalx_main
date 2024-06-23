@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LabPal</title>
+    <link rel="stylesheet" href="../../static/css/landingpage.css">
+    <link rel="shortcut icon" type="image/x-icon" href="../../static/images/labpal_small.ico">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <button class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <nav class="nav-menu" id="nav-menu">
+                <a href="https://labpal.com.ng" class="logo">
+                    <img src="../../static/images/labpal_big.png" alt="LabPal">
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <!-- <li><a href="#pricing">Pricing</a></li> -->
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <ul class="nav-links">
+                    <a href="{{ url_for('auth.auth_page') }}" class="signup_signin">Sign Up/In</a>
+                </ul>
+            </nav>
+        </div>
+    </header>
+   
+    {% block body %}s
+    {% endblock %}
+    
+    <footer>
+        <section>
+            <img src="" alt="">
+            <p>&copy; 2024 LabPal.</p>
+            <p>All rights reserved.</p>
+        </section>
+        <script src="../../static/js/landingpage.js"></script>
+    </footer>
+
+</body>
+</html>

@@ -34,8 +34,21 @@ h3 {
 .nav-container {
     display: flex;
     justify-content: center;
+    height: 40px;
     width: 100%; /* Ensure the nav container spans the full width */
     max-width: 100%; /* Optional: Limit the maximum width for better alignment */
+}
+.logo {
+    display: flex;
+    align-items: center;
+    }
+
+.logo img {
+    height: 200%; /* Make the logo take full height of its container */
+    width: auto; /* Maintain aspect ratio */
+    padding-top: 10px;
+    /* padding-right: 40px; */
+    
 }
 
 .signup_signin {
@@ -72,6 +85,7 @@ h3 {
     margin: 0;
     padding: 0;
     display: flex;
+    justify-items: left;
 }
 
 .nav-links li {

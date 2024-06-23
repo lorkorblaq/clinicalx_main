@@ -15,7 +15,7 @@ $(function () {
             }
         }
         return null;
-    }  
+    }
     const user_id = getCookie('user_id');
     const url = `${BaseUrl}/piu/push/${user_id}/`;
     let dataTableInstance ;
@@ -71,7 +71,7 @@ $(function () {
                         console.log(response);
                     },
                     error: function (error) {
-                        alert("Data could not be pushed");
+                        alert("Could not insert data. Please make sure the item is in the inventory and the lot number is correct");
                         console.error(error);
                     }
                 });
