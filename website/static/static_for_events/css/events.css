@@ -359,12 +359,7 @@ ul#todo-list li .todo-actions button {
 
 /* card */
 /* CSS for Event Cards */
-.card {
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-bottom: 15px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
+
 
 .card-header {
     background-color: #f0f0f0;
@@ -403,10 +398,15 @@ ul#todo-list li .todo-actions button {
     display: flex;
     flex-direction: column;
     flex: 1 1 calc(33.333% - 10px); /* 3 cards per row with space between */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 10px;
     border-radius: 5px;
     background-color: #fff;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    
+}
+.card:hover {
+    box-shadow: 0px 0px 20px #3157aa;
 }
 
 .card h2, .card p {

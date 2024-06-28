@@ -7,6 +7,9 @@ from flask_mail import Message, Mail
 from flask_socketio import send, emit
 # from  .celeryMasters.inventoryMaster import *
 from .forms import Newpassword
+from .db_clinicalx import db
+
+
 
 
 BASE = "https://labpal.com.ng/api"
@@ -38,8 +41,35 @@ def landing():
 
 @views.route("/features",  strict_slashes=False)
 def features():
-    return render_template("features.html", data=data)
+    FEATURE = db['features']
+    
+    features = FEATURE.find()
 
+    features_data = {}
+      
+    for feature in features:
+        # Assuming each document has a key like 'feature' which contains the 'event' key
+        event_data = feature['feature']
+        print(event_data)
+        features_data[event_data['event']] = event_data
+    
+    feature_name = request.args.get('feature')
+    
+    if feature_name in features_data:
+        feature_info = features_data[feature_name]
+        heading = feature_info['heading']
+        feature1 = feature_info['feature1']
+        feature2 = feature_info['feature2']
+        feature3 = feature_info['feature3']
+        link = feature_info['link']
+    else:
+        # Default or error handling
+        heading = 'Default Heading'
+        feature1 = 'Default Feature 1'
+        feature2 = 'Default Feature 2'
+        feature3 = 'Default Feature 3'
+        link = 'GXJP7RRYUWw'
+    return render_template("/templates_for_landingpage/features.html",heading=heading, feature1=feature1, feature2=feature2, feature3=feature3, link=link)
 
 @views.route("/app",  strict_slashes=False)
 @auth_required

@@ -5,7 +5,7 @@ body, html {
     width: 100%;
     height: 100%;
     overflow-x: hidden; /* Prevents horizontal scroll */
-    background: linear-gradient(to right, #e25330, #3157aa); /* Gradient background */
+    background: linear-gradient(to right, #DF5332, #3357A9); /* Gradient background */
 }
 
 header {
@@ -107,6 +107,7 @@ h3 {
     background-image: url('../images/hero-tag.jpg'); /* Update with your image path */
     background-position: center;
     background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-size: cover;
     height: 480px; /* Full height of the viewport */
     display: flex;
     justify-content: center; /* Center horizontally */
@@ -163,6 +164,7 @@ section {
 
 #features {
     padding-top: 70px;
+    padding-bottom: 0;
 }
 
 h1 {
@@ -271,6 +273,7 @@ footer {
 .video-container {
     text-align: center;
     padding: 50px 0;
+    padding-bottom: 0;
 }
 
 .video-container h2 {
@@ -278,9 +281,9 @@ footer {
 }
 
 .video-container iframe {
-    width: 80%;
-    max-width: 560px;
-    height: 315px;
+    width: 100%;
+    /* max-width: 640px; */
+    height: 500px;
     border: none;
 }
 
@@ -309,7 +312,12 @@ footer {
     .hamburger {
         display: flex;
     }
-
+    .logo img {
+        width: 20%;
+        height: 20%;
+        display: flex;
+        margin: 0 auto; /* Add this line to center the image horizontally */
+    }
     .nav-menu {
         display: none;
         flex-direction: column;
@@ -342,4 +350,43 @@ footer {
     .btn {
         padding: 10px 15px; /* Adjust button padding for small screens */
     }
+}
+
+
+
+/* register pages */
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #fff;
+}
+
+.reg_lab {
+    background-color: #6B8BD6; /* Gradient background */
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+.reg_lab:hover {
+    box-shadow: 0px 1px 20px 20px rgba(3, 3, 3, 0.1);
+
+}
+.title {
+    font-family: 'Dosis', sans-serif;
+    color: #ececec;
+}
+.highlight {
+    color: #e25330;
+}
+.button {
+    background: #e25330;
+    color: white;
+    padding: 10px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background: #484a50;
 }

@@ -1,12 +1,12 @@
 import os
 from datetime import timedelta
 from flask import Flask
-from flask_mail import Mail, Message
 from flask_redis import FlaskRedis
 import smtplib
+from flask_mail import Mail, Message
 
 # from website.events import socketio
-from .extensions import socketio
+from .extensions import socketio, mail
 from website.auth import auth
 from website.settings import settings
 from website.views import views
@@ -16,13 +16,14 @@ def create_app():
     app = Flask(__name__)
     # Configuration settings
     app.config['SECRET_KEY'] = 'LVUC5jSkp7jjR3O-'
+    app.config['MONGO_URI'] = "mongodb+srv://clinicalx:{password}@clinicalx.aqtbwah.mongodb.net/?retryWrites=true&w=majority"
     app.config['MAIL_SERVER'] = '51.195.190.75'
     app.config['MAIL_PORT'] = 465
     app.config['MAIL_USERNAME'] = 'labpal@labpal.com.ng'
     app.config['MAIL_PASSWORD'] = '518Oloko.'
-    app.config['MAIL_USE_TLS'] = False
     app.config['MAIL_USE_SSL'] = True
-    app.config['MAIL_DEFAULT_SENDER'] = ('Labpal','labpal@labpal.com.ng')
+    app.config['MAIL_DEFAULT_SENDER'] = ('LabPal','labpal@labpal.com.ng')
+    app.config['MAIL_DEBUG'] = True
     # app.config['SESSION_TYPE'] = 'redis'
     # app.config['SESSION_REDIS'] = 'redis://localhost:6379/0'
     app.config['SESSION_PERMANENT'] = True
@@ -36,21 +37,21 @@ def create_app():
     # Initialize extensions
     
     socketio.init_app(app)
-    mail = Mail(app)
-    with app.app_context():
-        app.mail = mail
-        # try:
-        #     with mail.connect() as conn:
-        #         print("Connection established successfully")
-        # except smtplib.SMTPException as e:
-        #     print("Failed to establish connection")
-        #     print(f"Error: {e}")
-        # except ConnectionRefusedError as e:
-        #     print("Connection refused")
-        #     print(f"Error: {e}")
-        # except Exception as e:
-        #     print("An unexpected error occurred")
-        #     print(f"Error: {e}")
+    mail.init_app(app)
+    # with app.app_context():
+    #     app.mail = mail
+    #     try:
+    #         with mail.connect() as conn:
+    #             print("Connection established")
+    #     except smtplib.SMTPException as e:
+    #         print("Failed to establish connection")
+    #         print(f"Error: {e}")
+    #     except ConnectionRefusedError as e:
+    #         print("Connection refused")
+    #         print(f"Error: {e}")
+    #     except Exception as e:
+    #         print("An unexpected error occurred")
+    #         print(f"Error: {e}")
 
     # Register blueprints
     app.register_blueprint(views, url_prefix="")

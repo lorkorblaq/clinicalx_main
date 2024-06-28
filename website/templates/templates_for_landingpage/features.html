@@ -1,0 +1,26 @@
+{% extends "templates_for_landingpage/landingbase.html" %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="../static/css/features.css">
+{% endblock head %}
+{% block body %}
+    <section>
+        <h1>{{ heading }}</h1>
+        <h1>Features</h1>
+        <p>
+            {{ feature1 }}
+        </p>
+        <br>
+        <p>
+            {{ feature2 }}
+        </p>
+        <br>
+        <p>
+            {{ feature3 }}
+        </p>
+        <h2> Watch on Youtube</h2>
+        <hr>    
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ link }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </section>
+{% endblock %}
+

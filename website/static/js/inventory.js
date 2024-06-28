@@ -5,6 +5,7 @@ $(function () {
 
     const ColumnsRequest = ['bench','item', 'in_stock', 'tests_per_day', 'total_tests_in_stock', 'quantity_test_requested', 'total_days_to_last', 'amount_needed'];
     const HeadersRequest = ['Bench','Item', 'In Stock(vials)', 'Tests/Day', 'Total Stock(tests)', 'Quantity Requested(tests)', 'In-Stock To Last(days)', 'Amount needed(vials)'];
+    const import_heading = ['bench', 'category', 'item', 'vials/pack', 'tests/vial', 'in stock', 'reOrderLevel', 'class', 'tests/day']
 
     BaseUrl = "https://labpal.com.ng/api"
     // BaseUrl = "http://0.0.0.0:3000/api";
@@ -131,7 +132,11 @@ $(function () {
     }
 
     $('#importButton').click(function() {
-        alert('Please select a CSV file to import data');
+        var alertMessage = `Please select a CSV file to import data.\nThe CSV file should contain exactly the following columns:\n\n`;
+        $.each(import_heading, function(index, column) {
+            alertMessage += `${column}\n`;
+        });
+        alert(alertMessage);
         
         // Create hidden file input
         var fileInput = $('<input>').attr('type', 'file').attr('accept', '.csv').css('display', 'none');

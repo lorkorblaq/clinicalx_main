@@ -88,3 +88,8 @@ h1 {
     background: linear-gradient(to right, #e25330, #3157aa); /* Gradient background */
 }
 
+
+#ex-inventory_table, #ex-expire_table, #ex-r_table {
+    box-shadow: 0px 0px 20px #3157aa;
+
+}
