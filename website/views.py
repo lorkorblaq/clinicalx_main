@@ -7,7 +7,7 @@ from flask_mail import Message, Mail
 from flask_socketio import send, emit
 # from  .celeryMasters.inventoryMaster import *
 from .forms import Newpassword
-from .db_clinicalx import db
+from .db_clinicalx import db, db_admin
 
 
 
@@ -42,7 +42,7 @@ def landing():
 @views.route("/features",  strict_slashes=False)
 def features():
     FEATURE = db['features']
-    
+    # FEATURE = db_admin['features']
     features = FEATURE.find()
 
     features_data = {}

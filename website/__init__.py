@@ -10,6 +10,7 @@ from .extensions import socketio, mail
 from website.auth import auth
 from website.settings import settings
 from website.views import views
+# from flask import session
 # from website.celery_config import make_celery
 
 def create_app():
@@ -59,3 +60,6 @@ def create_app():
     app.register_blueprint(auth, url_prefix="")
     return app
 
+# def get_lab_name():
+#     if session.get('lab'):
+#         return session.get('lab')

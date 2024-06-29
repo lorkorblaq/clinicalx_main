@@ -1,9 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, DateField, BooleanField, EmailField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
-from .db_clinicalx import db
 import email_validator
-LABS = db['labs']
 
 class LabForm(FlaskForm):
     org_name = StringField('org', validators=[DataRequired(), Length(min=4, max=20)], render_kw={"placeholder":"Organisation name"})
@@ -15,7 +13,8 @@ class LabForm(FlaskForm):
 
 
 class RegistrationForm(FlaskForm):
-    lab = StringField('org', validators=[DataRequired(), Length(min=4, max=20)], render_kw={"placeholder":"Laboratory token"})
+    org_id = StringField('org', validators=[DataRequired(), Length(min=4, max=90)], render_kw={"placeholder":"Organisation Id"})
+    lab = StringField('lab', validators=[DataRequired(), Length(min=4, max=20)], render_kw={"placeholder":"Laboratory name"})
     firstname = StringField('Firstname', validators=[DataRequired(), Length(min=3, max=20), ], render_kw={"placeholder":"First name"})
     lastname = StringField('Lastname', validators=[DataRequired(), Length(min=3, max=20),],  render_kw={"placeholder":"Last name"})
     email = EmailField('Email',validators=[DataRequired(), Email()], render_kw={"placeholder":"Email address"})

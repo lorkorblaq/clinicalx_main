@@ -28,9 +28,12 @@
         }
         .table {
             width: 100%;
-            border-collapse: collapse;
-            background-color: #e6f7ff; /* Light blue */
+            /* border-collapse: collapse; */
+            background-color: #f5f5f5; /* Light blue */
             text-align: center;
+            border: 1px solid black; /* Add border */
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
         }
         .body  {
             font-size: 17px;
@@ -58,7 +61,7 @@
         <tr>
             <td class="body">
                 <h3>Hi {{firstname}},</h3>
-                <h4>To finish setting up your account and start using LabPal, please verify your email address.</h4>
+                <p>To finish setting up your account and start using LabPal, please verify your email address.</p   >
                 <a href="{{ link }}" class="button">Verify Email</a>
                 <p>This link will expire after 15 minutes.</p>
             </td>

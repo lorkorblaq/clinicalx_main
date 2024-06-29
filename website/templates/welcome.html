@@ -1,0 +1,67 @@
+<!-- templates/email_template.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: Arial, sans-serif;}
+        .button {
+            background-color: #F17705; /* Orange */
+            border: none;
+            color: white;
+            padding: 10px 10px;
+            text-align: center;
+            /* display: flex; Use flexbox */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            width: 10%;
+            font-size: 15px;
+            margin: auto;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .button:hover{
+            background-color: #acc3f8;
+        }
+        .header {
+            background-color: #6b8bd6; /* Dark blue */
+            text-align: center;
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #e6f7ff; /* Light blue */
+            text-align: center;
+        }
+        .body  {
+            font-size: 17px;
+            text-align: center;
+            margin: 25px;
+            justify-content: center;
+ 
+        }
+        .logo {
+            display: block;
+            margin: 0 auto;
+        }
+        h2{
+            padding: 3px;
+        }
+    </style>
+</head>
+<body>
+    <table class="table" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td class="header">
+                <img src="https://labpal.com.ng/static/images/labpal_big.png" alt="LabPal Logo" class="logo" width="150"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="body">
+                <h3>Hi {{firstname}},</h3>
+                <h4>Welcome to LabPal,</h4>
+                <p>Please for any further assistance contact our support we are always ready to help<</p>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

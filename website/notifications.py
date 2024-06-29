@@ -4,7 +4,10 @@ from .extensions import socketio
 from flask_socketio import send, emit, join_room, leave_room
 from flask_mail import Message
 # mail = mail
+lab = session.get('lab')
+
 ITEMS_COLLECTION = db['items']
+# ITEMS_COLLECTION = lab['items']
 items = ITEMS_COLLECTION.find()
 
 
